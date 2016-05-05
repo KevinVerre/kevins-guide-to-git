@@ -1,0 +1,162 @@
+"Kevin's Guide to Git"
+
+Table of Contents:
+Topic 0. Introduction to Git and this Guide.
+Topic 1. What Git is.
+Topic 2. The difference between Git and Github
+Topic 3. Introduction to Branches and Commits
+Topic 4. Crafting commits
+Topic 5: Commands you should know.
+
+Topic 0. Introduction to Git and this Guide.
+
+Git is the name of a "Version Control” (or "revision control") program that many computer programmers use to help them write software. Version control software helps programmers write software by allowing programs to save multiple versions of their projects at the same time, and then combine those versions later. It also helps teams of programmers to work together while writing the a piece of software.
+
+Programmers who are git experts can use Git to more quickly and more easily write code. Unfortunately, git is very difficult to use and understand. The purpose of this guide is to help people get better at using git. It will be helpful for both beginners and experienced users. Because git is so difficult to use, many experienced git users still have a lot to learn.
+
+There are lots of resources online that can help you learn about how to use git. However, I am writing this guide because I think those resources are not good enough. For one thing, they are very difficult to read. Another thing, those resources do a bad job of explaining the core concepts of git. Instead they often focus on the git commands without giving them context. They leave out a lot of important information that if you knew you would have a much easier time learning and using git. If you understand the core concepts of git you will be better prepared to make proper use of the commands.
+
+Topic 1. What Git is.
+
+Git is a piece of software. In order to use git, it must be installed on your computer. Computers with Git installed can communicate with and send commands to other computers with Git installed. Of course, the other computer you are interacting with using your computer needs to know it can trust you, so it usually requires a password or a secret key. However, you can also use git just on a single computer. Git is a command line only program, which means you use it by typing in commands to the terminal or command prompt rather than using a graphical user interface. However, there are other programs that allow you to use Git with a graphical user interface. There are even websites that allow you to use git, such as GitHub and BitBucket.
+
+Git was created by Linus Torvalds, a famous programmer from Finland (but now living in the United States). Torvalds became famous for writing and managing the Linux kernel, the open source code that powers Linux operating systems. Git was created by Torvalds to help further development of the Linux kernel. The name “git" comes from British English, where it’s used as an insulting slang word. If you call someone a git, you are calling them idiotic, annoying, or unlikable. The official documentation for the git software jokingly and humbly refers to git as “git — the stupid content tracker”. The Git software was written in the C programming language. It's open source and you can look at the C code that Git is made out of.
+
+Once git is installed on your computer, you can use it to create git projects called repositories. A repository, in computer science, is a place where code and data and stored. A git repository is simply a folder (“directory”) on your machine. We’ll call this the project folder or repository folder. Inside that folder is all of your project’s files and subfolders.
+
+Inside of the repository folder there is also a special subfolder called “.git”. The .git folder is created when you create a new git repository. As you use the git program to make changes to your project, the git program will save information inside the .git folder. You can look around inside the .git folder if you want, but it is not very interesting. It is simply a place for the .git program to store information without it getting in the way of your project’s files and folders.
+
+In Unix, files and folders whose name starts with a period are not shown by default when using the “ls” command to list the contents of a folder. Instead you have to use “ls -a”, which will list all of the contents of a folder, including files and folders that begin with a period. So if you do “ls -a” inside of a git repository folder, you should see the .git subdirectory.
+
+The repository folder contains the .git subdirectory but will also contain a tree of other subfolders and files. Any folder or file that is inside of the repository is considered to be part of the git repository. However, the special .git subfolder only appears in one place: inside of the top-level repository folder. This means that the other subfolders in the repository do not contain a special .git subfolder.
+
+You can have multiple different git projects/repositories on your computer at one time. So when you perform a git command, the program git needs to know which git project you are trying to perform the command on. It will use your current location in the directory structure (your Present Working Directory or ‘pwd’) to know which git repository you are working on. When you run a command from inside of a git repository, the command will be performed on the git repository you are currently in. It figures out which repository you are in by finding the special .git folder (and it needs to find it anyway since each command uses the information stored there). It finds by the .git folder by looking for it in your current directory, and if it is not there, looking for it in each of the parent directories of your current directory.
+
+If you try to run a git command while you are not somewhere inside of a git repository you will see this error message:
+"fatal: Not a git repository (or any of the parent directories): .git"
+That means that, based on the folder you ran the command in, it couldn’t find a .git folder in the current folder or any of the parent folders, so you are not in a git repository.
+
+To create a git repository, you use the command “git init” along with the name you want to give to your project. So “git init super_marlin_bros” will tell git to create a new subdirectory called “super_marlin_bros” inside whatever directory you are currently in. This new directory “super_marlin_bros” is your repository folder. And as part of the initialization process, the program git will create a .git folder inside of your repository folder. You can also use “git init” to initialize a git repository based on an existing folder rather than creating a new folder. In that case, just give the name or path of the folder you want to turn into a git repository folder, and “git init” will create a .git subfolder inside of it.
+
+Another way to create a git repository folder on your computer is by “cloning" a git repository that already exists somewhere else. This is a very common way of creating a git project. And we’ll talk more about it later.
+
+Different git repositories can interact with each other using the git program. So if you and I are both working together on a project, I can have a git repository that contains the project’s code on my computer and you can have your own git repository folder that contains the project’s code on your computer. Then you could use the git program to update the files in your folder on your computer based on the changes I made on my computer.
+
+In practice, it uncommon to have two team members’ repositories interact directly. Instead, it is typical to create an extra repository somewhere that all of the team members can access. This is usually called the “origin” repository. It exists on a computer that all of the team members have permission to interact with. And it’s usually hosted on a server computer that is turned on at all times so that at any time a team member can push their work to the origin repository. And any time later, the other team members can pull those changes from the origin repository to their own repository. The repository that you are working out of on your own computer is called the “local” repository. The origin repository and the repository folders belonging to other team members are “remote” repositories from your point of view because they (almost always) don’t exist on the same computer as yours.
+
+The git program can use the special .git folder to store information not just about your local repository but also information about the files and folders in remote repositories that you have permission to view. In practice, there is typically only one remote repository that you care about (“origin”), but in theory you can have information about any number of remote repositories stored in your .git subfolder. The process of downloading updates from a remote repository and storing the content of those updates into your .git subfolder is called fetching. If you fetch a remote repository, you can see the code that was on that remote repository at the time you fetched even if you are not connected to the Internet or to that remote repository!
+
+Git is sometimes called a “distributed revision control system”. The reason why it is called that is difficult to explain and not important. So don’t worry if you don’t understand the rest of this paragraph. Git is “decentralized” because the git software is written in such a way that all of the git repositories for a particular project are peers (equals). For example, let’s say we have three git repositories for the same project. One is on my computer, one is on your computer, and one is another a server that we can both use the git program to push changes to. All three of those computers are running the same git software. Even though we are choosing to treat one of those repositories (the one on the server) as special, there is nothing about the way its git software or .git subfolder is set up is different than the other repositories.
+
+Topic 2. The difference between Git and Github
+
+It's common for beginners to mix up Git and Github. Git is a program that you can install on your computer. By default, it is a command line program without a user interface. Git allows you to share code files that are on your computer with other computers, such as your teammates or your company's server.
+
+Github is a website (and the company behind the website). You can almost think of Github as a program running on top of Git that adds additional features. Because Github has Git running on their servers, you can share your code back and forth between your computer and the Github servers. There are a few reasons why you might want to do so. For one, storing your code on their servers is convenient. Their servers are always running and are safe because your stuff is protected by your usernames and passwords. That way, anyone on your team can always access the repository stored on Github through the Internet. While Git does not require a "central" repository, teams use Github as a central repository for convenience. When they want to share new code they've written, they push to Github. And when you want to see new code that someone else has written, you pull it from Github rather than pulling it directly from your teammate's computer.
+
+Github offers a free version and a paid version. If you use the free version, all of your code is publicly visible. This lets people see it, (but not make any changes to it). With the paid version, you can control who can see your code. But there are reasons why you might want other people to see your code. For example, to show it off or to allow other people to make suggestions for improvements.
+
+In addition to the paid version of Github, there is also an Enterprise version of Github that allows you to run a Github server on your own servers.
+
+Github's website comes with a lot of tools to make using Git easier. You get to use the UI in your browser rather than the command line.
+
+Topic 3. Introduction to Branches and Commits
+
+So your Git project repository is a folder that contains all of the subfolders and files for the project inside of it. A branch is a version of that folder. Each branch has a name and belongs to a repository. Each repository can have as many branches as you want. And if your repository has permission to interact with another repository for the same project, you can see their branches. Let’s say you want to have two different versions of your folder at the same time, you could do it just by having two branches. Or you could have two different branches that represent the exact same version of the project folder.
+
+You can think of a branch as being a series of commits. Commits are the units with which you build your Git repository. A single commit can contain any number of changes to any number of files. A commit can say that a file was added or removed to the folder. A commit can say that a certain line in a plain text file was removed or that a certain line was added.
+
+The latest commit is called HEAD. The commits before it are HEAD~1, HEAD~2, HEAD~3, etc.
+
+What does a commit contain? A commit contains the following fields: a commit hash, a commit message, the changes, an author, a date, 
+
+Topic 4. Crafting commits
+
+A commit is a collection of changes to the repository. Changes to the repository can include adding a new file, removing a file, or changing the lines of a file. You create a commit by making changes to the repository, staging the changes you want to commit, and then creating a commit out of the staged changed. A change to the repository can either be staged or unstaged. A staged change is one that you are getting ready to use in a commit.
+
+The command “git status” will show you the status of all of the changes made to the repository since the last commit. It will show you if files were added, removed, or changed. The command “git diff” will show you how the files have changed. The command “git diff --staged” will show the changes to the repository that are staged. By default, “git diff” will show you the differences for the entire repository. You can also show the changes to a particular file by using “git diff FILENAME”. The repository you are working on is sometimes called the “working directory” and the differences that you’ve made are changes to the “working tree”. Another name for the stage is the “index”.
+
+The next step is to “stage” the changes by adding them to the “stage”. If you added a new file or made a change to a file, you can stage that difference by using the command “git add FILENAME”. If you removed a file, you can stage that difference to the repo by using the command “git rm FILENAME”. Of course, staging each file individually can get tedious so you don’t have to do it that way. You can stage all of the changes to a folder (including changes to folders inside that folder) by using “git add DIRECTORY”. And of course the period means the current directory you are in, so it is common to do do “git add .”. Sometimes you might want to give this command an argument. By default, "git add DIRECTORY/FILENAME” will stage new files and changes to files but it won’t stage that a file has been removed. So the argument -A tells it to stage all changes, including removing files. So if you are in the root directory, the command “git add -A” will add of all the changes you made to your working tree to the stage.
+
+Why do we having a staging process? The stage help you to create commits exactly as you want them to by giving you a place to see what’s going to be in the commit before it is created.
+
+Occasionally, you might find that there are some changes to a file that you want to stage and other changes to a file that you don’t want to stage because you don’t want to keep those changes. Using “git add -p” will let you go through the differences in that file and choose which smaller changes (called “hunks”) you want to add and which you don’t.
+
+Sometimes you will want to remove a change from the stage. As “git status” will tell you, you can use “git reset HEAD <filename>” to remove that file’s changes from the staging environment but keep the changes in the working tree. I’m not sure why the command is “git reset HEAD” though, because it doesn’t discard your changes that you made to HEAD, just unstages them.
+
+You can also unstage a change if you decide you don’t want it.
+
+Future topics to write about:
+Concept. Working with Remote branches
+Concept. Merging branches
+Concept. Combining branches and commits with rebase
+Concept. Managing conflicts
+
+Concept. What happens when you resolve a conflict?
+
+Concept. Gitignore
+    Sometimes you want to have files in your repository folder without having those files be "tracked" as part of the repository. So you need a way to tell git which files in your repository folder should not be tracked. You do this by creating .gitignore files inside of your repository.
+    Files that are ignored won't show up as being untracked in git status. And won't be added when using git add.
+
+Topic 5: Commands you should know.
+
+git “command” --help
+     Git will show you the Help page for the command if you add --help
+git diff
+git diff --staged, git diff --cached
+    --staged and --cached do the same thing. Both show you which changes to your repository have been added to the staging area. Meaning, these changes have been selected to be part of the next commit
+
+git checkout -
+    The dash argument will checkout the previous branch you were on before
+
+git init “foldername"
+git status
+git branch
+git branch -r
+git branch -v
+    Shows more verbose info about the branches, such as what is the latest commit in each
+git branch -vv
+    Shows EVEN MORE verbose info about the branches, including the upstream branch for each branch that has one
+git show
+    Same thing as "git show HEAD"
+git show HEAD
+    Shows the contents of the HEAD commit (the latest commit in the current branch)
+git show “commit-hash"
+git log --graph
+    Prints out a graph so you can see how branches were merged
+git log -n 3
+     Use -n x to only show information about the X latest commits
+git log --oneline
+     Use the --oneline argument to only print out one line per git commit
+git fetch
+     You local repository stores information about what it knows about the remote repository. Calling git fetch tells git to communicate with the remote repository and update what your local repository knows about it.
+
+git fetch -p
+     By default, git fetch will update what your local repository knows about the remote repository. It will download new commits and branches. But if a branch is deleted on the remote repository, your local storage will not delete the corresponding local-remote branch. However, if you use -p for prune it will delete any local-remote branches that no longer have a corresponding branch in the remote repository.
+
+git merge “other_branch"
+     This will merge the “other_branch” into your current branch. Unless the merge is a fast-forward merge, this will create a “merge commit”.
+
+git pull
+     This does two things. First, it does a git fetch. This means that your local repository will have all the updates from the remote repository stored in the form of remote branches. Also, if you are on a branch that has an upstream remote branch, it will merge that upstream remote branch (which is now a local-remote branch because of the Fetch) into your current branch.
+
+git --amend
+     This makes changes to the latest commit on your current branch (HEAD). It allows you to do two things. One, it allows you to modify the commit message. It will also combines your staged changes with HEAD. So this is one way to modify the contents of a commit. Note that this actually deletes your HEAD commit and creates a new commit to replace it.
+
+git clean
+    Used for cleaning up (deleting) untracked files in your repo. Because this command deletes files from your computer, it requires an extra argument (-f) to force it to do anything
+git clean --dry-run
+    The --dry-run argument prints out which files will be removed without actually removing any files
+git clean -f
+    The -f argument (or --force) tells git that you are serious about removing those files
+git clean -d
+    Deletes untracked directories as well as files
+
+git blame "filename"
+    Show which commit (and which commit author) is responsible for each line of the file.
+
+git reset
+    I use this to get rid of commits
+
+git checkout <commit> <file>
+    I use this to revert to a particular version of a file. It will stage the differences for that file from <HEAD> to <commit>. So that if you committed, you would have the old version of the file.
