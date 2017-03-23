@@ -6,7 +6,10 @@ Topic 1. What Git is.
 Topic 2. The difference between Git and Github
 Topic 3. Introduction to Branches and Commits
 Topic 4. Crafting commits
-Topic 5: Commands you should know.
+Topic 5. Future work
+Topic -1: Commands you should know.
+
+
 
 Topic 0. Introduction to Git and this Guide.
 
@@ -15,6 +18,8 @@ Git is the name of a "Version Control” (or "revision control") program that m
 Programmers who are git experts can use Git to more quickly and more easily write code. Unfortunately, git is very difficult to use and understand. The purpose of this guide is to help people get better at using git. It will be helpful for both beginners and experienced users. Because git is so difficult to use, many experienced git users still have a lot to learn.
 
 There are lots of resources online that can help you learn about how to use git. However, I am writing this guide because I think those resources are not good enough. For one thing, they are very difficult to read. Another thing, those resources do a bad job of explaining the core concepts of git. Instead they often focus on the git commands without giving them context. They leave out a lot of important information that if you knew you would have a much easier time learning and using git. If you understand the core concepts of git you will be better prepared to make proper use of the commands.
+
+
 
 Topic 1. What Git is.
 
@@ -48,6 +53,8 @@ The git program can use the special .git folder to store information not just ab
 
 Git is sometimes called a “distributed revision control system”. The reason why it is called that is difficult to explain and not important. So don’t worry if you don’t understand the rest of this paragraph. Git is “decentralized” because the git software is written in such a way that all of the git repositories for a particular project are peers (equals). For example, let’s say we have three git repositories for the same project. One is on my computer, one is on your computer, and one is another a server that we can both use the git program to push changes to. All three of those computers are running the same git software. Even though we are choosing to treat one of those repositories (the one on the server) as special, there is nothing about the way its git software or .git subfolder is set up is different than the other repositories.
 
+
+
 Topic 2. The difference between Git and Github
 
 It's common for beginners to mix up Git and Github. Git is a program that you can install on your computer. By default, it is a command line program without a user interface. Git allows you to share code files that are on your computer with other computers, such as your teammates or your company's server.
@@ -60,6 +67,8 @@ In addition to the paid version of Github, there is also an Enterprise version o
 
 Github's website comes with a lot of tools to make using Git easier. You get to use the UI in your browser rather than the command line.
 
+
+
 Topic 3. Introduction to Branches and Commits
 
 So your Git project repository is a folder that contains all of the subfolders and files for the project inside of it. A branch is a version of that folder. Each branch has a name and belongs to a repository. Each repository can have as many branches as you want. And if your repository has permission to interact with another repository for the same project, you can see their branches. Let’s say you want to have two different versions of your folder at the same time, you could do it just by having two branches. Or you could have two different branches that represent the exact same version of the project folder.
@@ -68,7 +77,9 @@ You can think of a branch as being a series of commits. Commits are the units w
 
 The latest commit is called HEAD. The commits before it are HEAD~1, HEAD~2, HEAD~3, etc.
 
-What does a commit contain? A commit contains the following fields: a commit hash, a commit message, the changes, an author, a date, 
+What does a commit contain? A commit contains the following fields: a commit hash, a commit message, the changes, an author, a date
+
+
 
 Topic 4. Crafting commits
 
@@ -86,23 +97,28 @@ Sometimes you will want to remove a change from the stage. As “git status” w
 
 You can also unstage a change if you decide you don’t want it.
 
-Future topics to write about:
-Concept. Working with Remote branches
-Concept. Merging branches
-Concept. Combining branches and commits with rebase
-Concept. Managing conflicts
-
-Concept. What happens when you resolve a conflict?
-
 Concept. Gitignore
     Sometimes you want to have files in your repository folder without having those files be "tracked" as part of the repository. So you need a way to tell git which files in your repository folder should not be tracked. You do this by creating .gitignore files inside of your repository.
     Files that are ignored won't show up as being untracked in git status. And won't be added when using git add.
 
-Topic 5: Commands you should know.
+
+
+Topic 5. Future work. Future topics to write about:
+
+Concept. Working with Remote branches
+Concept. Merging branches
+Concept. Combining branches and commits with rebase
+Concept. Managing conflicts
+Concept. What happens when you resolve a conflict?
+
+
+
+Topic -1. Commands you should know.
 
 git “command” --help
      Git will show you the Help page for the command if you add --help
 git diff
+	Shows you the changes to files in the repository that haven't been added to the staging area.
 git diff --staged, git diff --cached
     --staged and --cached do the same thing. Both show you which changes to your repository have been added to the staging area. Meaning, these changes have been selected to be part of the next commit
 
@@ -138,10 +154,12 @@ git merge “other_branch"
      This will merge the “other_branch” into your current branch. Unless the merge is a fast-forward merge, this will create a “merge commit”.
 
 git pull
-     This does two things. First, it does a git fetch. This means that your local repository will have all the updates from the remote repository stored in the form of remote branches. Also, if you are on a branch that has an upstream remote branch, it will merge that upstream remote branch (which is now a local-remote branch because of the Fetch) into your current branch.
+     This does two things. First, it does a git fetch. This means that your local repository will have all the updates from the remote repository stored in the form of remote branches. Also, if you are on a branch that has an upstream remote branch, it will merge that upstream remote branch (which is now a local-remote branch because of the Fetch) into your current branch
 
-git --amend
-     This makes changes to the latest commit on your current branch (HEAD). It allows you to do two things. One, it allows you to modify the commit message. It will also combines your staged changes with HEAD. So this is one way to modify the contents of a commit. Note that this actually deletes your HEAD commit and creates a new commit to replace it.
+git commit --amend
+     This makes changes to the latest commit on your current branch (HEAD). It allows you to do two things. One, it allows you to modify the commit message of your most recent commit (HEAD). It will also combines your staged changes with HEAD. So this is one way to modify the contents of a commit. Note that this actually deletes your HEAD commit and creates a new commit (with a new commit hash) to replace it.
+
+This is a very clean way of editing a commit you just made but haven't pushed or merged anywhere else. However, it can get a little ugly if you use it on a commit that you have pushed or merged to another branch. Because now there are two commits: the original and the ammended one that contains the ammendments. Git can create merge two branches like that by creating a merge commit
 
 git clean
     Used for cleaning up (deleting) untracked files in your repo. Because this command deletes files from your computer, it requires an extra argument (-f) to force it to do anything
