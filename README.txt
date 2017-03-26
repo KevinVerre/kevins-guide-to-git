@@ -6,8 +6,10 @@ Topic 1. What Git is.
 Topic 2. The difference between Git and Github
 Topic 3. Introduction to Branches and Commits
 Topic 4. Crafting commits
-Topic 5. Future work
-Topic -1: Commands you should know.
+Topic 5. Rebase
+Topic A. Future work
+Topic B: Commands you should know.
+Topic C: Other resources
 
 
 
@@ -19,6 +21,7 @@ Programmers who are git experts can use Git to more quickly and more easily writ
 
 There are lots of resources online that can help you learn about how to use git. However, I am writing this guide because I think those resources are not good enough. For one thing, they are very difficult to read. Another thing, those resources do a bad job of explaining the core concepts of git. Instead they often focus on the git commands without giving them context. They leave out a lot of important information that if you knew you would have a much easier time learning and using git. If you understand the core concepts of git you will be better prepared to make proper use of the commands.
 
+But once you've read my guide and understand the core concepts of Git, you'll be ready to start mastering it. At that point, you will get much more out of the tutorials and references that others have created.
 
 
 Topic 1. What Git is.
@@ -103,7 +106,13 @@ Concept. Gitignore
 
 
 
-Topic 5. Future work. Future topics to write about:
+Topic 5. Rebase
+
+Rebase is a powerful command that advanced Git users can use. It allows you to re-write the git commit history and juggle around commits. More on this coming soon.
+
+
+
+Topic A. Future work. Future topics to write about:
 
 Concept. Working with Remote branches
 Concept. Merging branches
@@ -113,7 +122,7 @@ Concept. What happens when you resolve a conflict?
 
 
 
-Topic -1. Commands you should know.
+Topic B. Commands you should know.
 
 git “command” --help
      Git will show you the Help page for the command if you add --help
@@ -123,7 +132,7 @@ git diff --staged, git diff --cached
     --staged and --cached do the same thing. Both show you which changes to your repository have been added to the staging area. Meaning, these changes have been selected to be part of the next commit
 
 git checkout -
-    The dash argument will checkout the previous branch you were on before
+    The dash argument will checkout the previous branch you were on before your current branch. (Similar to how `cd -` changes your directory to the previous one you were in.)
 
 git init “foldername"
 git status
@@ -156,10 +165,19 @@ git merge “other_branch"
 git pull
      This does two things. First, it does a git fetch. This means that your local repository will have all the updates from the remote repository stored in the form of remote branches. Also, if you are on a branch that has an upstream remote branch, it will merge that upstream remote branch (which is now a local-remote branch because of the Fetch) into your current branch
 
-git commit --amend
-     This makes changes to the latest commit on your current branch (HEAD). It allows you to do two things. One, it allows you to modify the commit message of your most recent commit (HEAD). It will also combines your staged changes with HEAD. So this is one way to modify the contents of a commit. Note that this actually deletes your HEAD commit and creates a new commit (with a new commit hash) to replace it.
+git add -p FILENAME
+	Have you ever wanted to stage some of the changes in a file but not all of the changes in that file? You can do this with the --patch argument, or -p for short. Git will go through all the changes in the file. To make this go quickly, it does it in "hunks" of lines instead of individual lines. A hunk is a group of lines that are next to each other. For each hunk, you can tell Git if you want to stage it, or move on to the next hunk. You can even tell it that you want to break down the hunk into individual lines if you want to get really specific about what you add to the staging area.
 
-This is a very clean way of editing a commit you just made but haven't pushed or merged anywhere else. However, it can get a little ugly if you use it on a commit that you have pushed or merged to another branch. Because now there are two commits: the original and the ammended one that contains the ammendments. Git can create merge two branches like that by creating a merge commit
+	When this is done, try running the `git status` command. You'll see the filename appear in the both the list of files with staged changes and the list of files with unstaged changes.
+
+git commit --amend
+     This makes changes to the latest commit on your current branch (HEAD). It allows you to do two things. One, it allows you to modify the commit message of your most recent commit (HEAD). It will also combines your staged changes with HEAD. I use this if I create a commit but then realize there is another change I want to make to the files and add to that commit. So this is a very convenient way to modify the contents of your most recent commit.
+
+Note that this actually deletes your HEAD commit and creates a new commit (with a new commit hash) to replace it. It's a type of "rebase".
+
+This is a very clean way of editing a commit you just made but haven't pushed or merged anywhere else. In this case, you're removing a commit from your current branch and relacing it with the new commit that contains the amendments.
+
+However, it can get a little ugly if you use it on a commit that you have pushed or merged to another branch. Because now there are two commits: the amended version on your current branch and the original version on some other branch. These two commits will conflict with each other if you try to merge them. Usually this isn't too bad since Git will know how to automatically resolve simple merge conflicts. But it can potentially get messy.
 
 git clean
     Used for cleaning up (deleting) untracked files in your repo. Because this command deletes files from your computer, it requires an extra argument (-f) to force it to do anything
@@ -178,3 +196,10 @@ git reset
 
 git checkout <commit> <file>
     I use this to revert to a particular version of a file. It will stage the differences for that file from <HEAD> to <commit>. So that if you committed, you would have the old version of the file.
+
+
+
+Topic C. Other resources.
+The company Atlassian, which makes tools for software developers, has some great educational web pages about Git. You can read these web pages for free. Atlassian is now the parent company of BitBucket, a product that competes with GitHub.
+
+GitHub also has some good, free resources and tutorials to help people learn Git.
