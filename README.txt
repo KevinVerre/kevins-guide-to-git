@@ -197,9 +197,17 @@ git reset
 git checkout <commit> <file>
     I use this to revert to a particular version of a file. It will stage the differences for that file from <HEAD> to <commit>. So that if you committed, you would have the old version of the file.
 
+git bisect
+	This is a tool (that comes with git) that you can use to find when a bug was introduced to your code. What it does is help you checkout old commit versions of your code. For each commit, you manually test for the bug and then you tell the command prompt whether or not the bug was present. If you have a script or command you could run to test for the bug, you can configure the bisect tool to run that command on every bisection.
+
+	Not everyone will need `git bisect` but it's nice to know that it's there if you ever need it for a giant project.
+
 
 
 Topic C. Other resources.
+
 The company Atlassian, which makes tools for software developers, has some great educational web pages about Git. You can read these web pages for free. Atlassian is now the parent company of BitBucket, a product that competes with GitHub.
 
-GitHub also has some good, free resources and tutorials to help people learn Git.
+GitHub.com also has some good, free resources and tutorials to help people learn Git.
+
+The official Git website has a free book that covers all the features of Git. It's called 'Pro Git': https://git-scm.com/book
