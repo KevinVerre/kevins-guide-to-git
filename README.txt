@@ -129,41 +129,41 @@ git “command” --help
 git diff
 	Shows you the changes to files in the repository that haven't been added to the staging area.
 git diff --staged, git diff --cached
-    --staged and --cached do the same thing. Both show you which changes to your repository have been added to the staging area. Meaning, these changes have been selected to be part of the next commit
+	--staged and --cached do the same thing. Both show you which changes to your repository have been added to the staging area. Meaning, these changes have been selected to be part of the next commit
 
 git checkout -
-    The dash argument will checkout the previous branch you were on before your current branch. (Similar to how `cd -` changes your directory to the previous one you were in.)
+	The dash argument will checkout the previous branch you were on before your current branch. (Similar to how `cd -` changes your directory to the previous one you were in.)
 
 git init “foldername"
 git status
 git branch
 git branch -r
 git branch -v
-    Shows more verbose info about the branches, such as what is the latest commit in each
+	Shows more verbose info about the branches, such as what is the latest commit in each
 git branch -vv
-    Shows EVEN MORE verbose info about the branches, including the upstream branch for each branch that has one
+	Shows EVEN MORE verbose info about the branches, including the upstream branch for each branch that has one
 git show
-    Same thing as "git show HEAD"
+	Same thing as "git show HEAD"
 git show HEAD
     Shows the contents of the HEAD commit (the latest commit in the current branch)
 git show “commit-hash"
 git log --graph
-    Prints out a graph so you can see how branches were merged
+	Prints out a graph so you can see how branches were merged
 git log -n 3
-     Use -n x to only show information about the X latest commits
+	Use -n x to only show information about the X latest commits
 git log --oneline
-     Use the --oneline argument to only print out one line per git commit
+	Use the --oneline argument to only print out one line per git commit
 git fetch
-     You local repository stores information about what it knows about the remote repository. Calling git fetch tells git to communicate with the remote repository and update what your local repository knows about it.
+	You local repository stores information about what it knows about the remote repository. Calling git fetch tells git to communicate with the remote repository and update what your local repository knows about it.
 
 git fetch -p
-     By default, git fetch will update what your local repository knows about the remote repository. It will download new commits and branches. But if a branch is deleted on the remote repository, your local storage will not delete the corresponding local-remote branch. However, if you use -p for prune it will delete any local-remote branches that no longer have a corresponding branch in the remote repository.
+	By default, git fetch will update what your local repository knows about the remote repository. It will download new commits and branches. But if a branch is deleted on the remote repository, your local storage will not delete the corresponding local-remote branch. However, if you use -p for prune it will delete any local-remote branches that no longer have a corresponding branch in the remote repository.
 
 git merge “other_branch"
-     This will merge the “other_branch” into your current branch. Unless the merge is a fast-forward merge, this will create a “merge commit”.
+	This will merge the “other_branch” into your current branch. Unless the merge is a fast-forward merge, this will create a “merge commit”.
 
 git pull
-     This does two things. First, it does a git fetch. This means that your local repository will have all the updates from the remote repository stored in the form of remote branches. Also, if you are on a branch that has an upstream remote branch, it will merge that upstream remote branch (which is now a local-remote branch because of the Fetch) into your current branch
+	This does two things. First, it does a git fetch. This means that your local repository will have all the updates from the remote repository stored in the form of remote branches. Also, if you are on a branch that has an upstream remote branch, it will merge that upstream remote branch (which is now a local-remote branch because of the Fetch) into your current branch
 
 git add -p FILENAME
 	Have you ever wanted to stage some of the changes in a file but not all of the changes in that file? You can do this with the --patch argument, or -p for short. Git will go through all the changes in the file. To make this go quickly, it does it in "hunks" of lines instead of individual lines. A hunk is a group of lines that are next to each other. For each hunk, you can tell Git if you want to stage it, or move on to the next hunk. You can even tell it that you want to break down the hunk into individual lines if you want to get really specific about what you add to the staging area.
@@ -171,31 +171,31 @@ git add -p FILENAME
 	When this is done, try running the `git status` command. You'll see the filename appear in the both the list of files with staged changes and the list of files with unstaged changes.
 
 git commit --amend
-     This makes changes to the latest commit on your current branch (HEAD). It allows you to do two things. One, it allows you to modify the commit message of your most recent commit (HEAD). It will also combines your staged changes with HEAD. I use this if I create a commit but then realize there is another change I want to make to the files and add to that commit. So this is a very convenient way to modify the contents of your most recent commit.
+	This makes changes to the latest commit on your current branch (HEAD). It allows you to do two things. One, it allows you to modify the commit message of your most recent commit (HEAD). It will also combines your staged changes with HEAD. I use this if I create a commit but then realize there is another change I want to make to the files and add to that commit. So this is a very convenient way to modify the contents of your most recent commit.
 
-Note that this actually deletes your HEAD commit and creates a new commit (with a new commit hash) to replace it. It's a type of "rebase".
+	Note that this actually deletes your HEAD commit and creates a new commit (with a new commit hash) to replace it. It's a type of "rebase".
 
-This is a very clean way of editing a commit you just made but haven't pushed or merged anywhere else. In this case, you're removing a commit from your current branch and relacing it with the new commit that contains the amendments.
+	This is a very clean way of editing a commit you just made but haven't pushed or merged anywhere else. In this case, you're removing a commit from your current branch and relacing it with the new commit that contains the amendments.
 
-However, it can get a little ugly if you use it on a commit that you have pushed or merged to another branch. Because now there are two commits: the amended version on your current branch and the original version on some other branch. These two commits will conflict with each other if you try to merge them. Usually this isn't too bad since Git will know how to automatically resolve simple merge conflicts. But it can potentially get messy.
+	However, it can get a little ugly if you use it on a commit that you have pushed or merged to another branch. Because now there are two commits: the amended version on your current branch and the original version on some other branch. These two commits will conflict with each other if you try to merge them. Usually this isn't too bad since Git will know how to automatically resolve simple merge conflicts. But it can potentially get messy.
 
 git clean
-    Used for cleaning up (deleting) untracked files in your repo. Because this command deletes files from your computer, it requires an extra argument (-f) to force it to do anything
+	Used for cleaning up (deleting) untracked files in your repo. Because this command deletes files from your computer, it requires an extra argument (-f) to force it to do anything
 git clean --dry-run
-    The --dry-run argument prints out which files will be removed without actually removing any files
+	The --dry-run argument prints out which files will be removed without actually removing any files
 git clean -f
-    The -f argument (or --force) tells git that you are serious about removing those files
+	The -f argument (or --force) tells git that you are serious about removing those files
 git clean -d
-    Deletes untracked directories as well as files
+	Deletes untracked directories as well as files
 
 git blame "filename"
-    Show which commit (and which commit author) is responsible for each line of the file.
+	Show which commit (and which commit author) is responsible for each line of the file.
 
 git reset
-    I use this to get rid of commits
+	I use this to get rid of commits
 
 git checkout <commit> <file>
-    I use this to revert to a particular version of a file. It will stage the differences for that file from <HEAD> to <commit>. So that if you committed, you would have the old version of the file.
+	I use this to revert to a particular version of a file. It will stage the differences for that file from <HEAD> to <commit>. So that if you committed, you would have the old version of the file.
 
 git bisect
 	This is a tool (that comes with git) that you can use to find when a bug was introduced to your code. What it does is help you checkout old commit versions of your code. For each commit, you manually test for the bug and then you tell the command prompt whether or not the bug was present. If you have a script or command you could run to test for the bug, you can configure the bisect tool to run that command on every bisection.
