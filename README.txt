@@ -7,6 +7,7 @@ Topic 2. The difference between Git and Github
 Topic 3. Introduction to Branches and Commits
 Topic 4. Crafting commits
 Topic 5. Rebase
+Topic 6. Other software built on top of Git
 Topic A. Future work
 Topic B: Commands you should know.
 Topic C: Other resources
@@ -100,7 +101,7 @@ Sometimes you will want to remove a change from the stage. As “git status” w
 
 You can also unstage a change if you decide you don’t want it.
 
-Concept. Gitignore
+Concept: Gitignore
     Sometimes you want to have files in your repository folder without having those files be "tracked" as part of the repository. So you need a way to tell git which files in your repository folder should not be tracked. You do this by creating .gitignore files inside of your repository.
     Files that are ignored won't show up as being untracked in git status. And won't be added when using git add.
 
@@ -112,13 +113,24 @@ Rebase is a powerful command that advanced Git users can use. It allows you to r
 
 
 
+Topic 6. Other software built on top of Git.
+
+The most common software built on top of Git is programs that allow you to use Git with a GUI interface instead of the command line.
+
+Some text editors and IDEs come with built in Git functionality. For example, Apple's Xcode.
+
+"Gitless" is a command line interface built on top of git that is designed to be easiler to learn how to use than Git.
+
+Other programs are built on top of Git and creatively take advantage of git's abilities to keep different versions of files in sync. For example, Ruby on Rail's package manager "RubyGems" uses Git repos to store and share code.
+
+
 Topic A. Future work. Future topics to write about:
 
-Concept. Working with Remote branches
-Concept. Merging branches
-Concept. Combining branches and commits with rebase
-Concept. Managing conflicts
-Concept. What happens when you resolve a conflict?
+Concept: Working with Remote branches
+Concept: Merging branches
+Concept: Combining branches and commits with rebase
+Concept: Managing conflicts
+Concept: What happens when you resolve a conflict?
 
 
 
