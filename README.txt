@@ -57,6 +57,8 @@ The git program can use the special .git folder to store information not just ab
 
 Git is sometimes called a “distributed revision control system”. The reason why it is called that is difficult to explain and not important. So don’t worry if you don’t understand the rest of this paragraph. Git is “decentralized” because the git software is written in such a way that all of the git repositories for a particular project are peers (equals). For example, let’s say we have three git repositories for the same project. One is on my computer, one is on your computer, and one is another a server that we can both use the git program to push changes to. All three of those computers are running the same git software. Even though we are choosing to treat one of those repositories (the one on the server) as special, there is nothing about the way its git software or .git subfolder is set up is different than the other repositories.
 
+In practice, you typically have a central git server running all of the time that allows you to fetch from an origin repo. But even if it were to go offline, you can save all of yoru changes locally and push your changes at a later time.
+
 
 
 Topic 2. The difference between Git and Github
@@ -79,7 +81,11 @@ So your Git project repository is a folder that contains all of the subfolders 
 
 You can think of a branch as being a series of commits. Commits are the units with which you build your Git repository. A single commit can contain any number of changes to any number of files. A commit can say that a file was added or removed to the folder. A commit can say that a certain line in a plain text file was removed or that a certain line was added.
 
-The latest commit is called HEAD. The commits before it are HEAD~1, HEAD~2, HEAD~3, etc.
+Each git repo starts out with one branch, called "master". But you can create a new one at any time. When you create a new branch, it is only stored in your local repo. But you can also push branches to another repo if you want. When you switch from working on one branch to another branch, Git will modify your files and folders to flect the state of your code at the end of that branch.
+
+The latest commit on the current branch is called HEAD. The commits before it are HEAD~1, HEAD~2, HEAD~3, etc.
+
+A commit is a collection of changes to the repository. And a branch is a collection of commits that is the result of all the commits being applied one after another. They are called branches because they form a tree structure. Typically a secondary branch of commits branches off from another more primary branch. Then, if you later want that secondary branch to be included back into the main branch, you can merge it into the main branch.
 
 What does a commit contain? A commit contains the following fields: a commit hash (which is used as an ID string), a commit message string, the changes (to all relevant files and folders), an author name string, a datetime. 
 
@@ -104,6 +110,11 @@ You can also unstage a change if you decide you don’t want it.
 Concept: Gitignore
     Sometimes you want to have files in your repository folder without having those files be "tracked" as part of the repository. So you need a way to tell git which files in your repository folder should not be tracked. You do this by creating .gitignore files inside of your repository.
     Files that are ignored won't show up as being untracked in git status. And won't be added when using git add.
+
+
+Topic X. A typical workflow
+
+
 
 
 
