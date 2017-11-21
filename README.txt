@@ -24,6 +24,8 @@ There are lots of resources online that can help you learn about how to use git.
 
 But once you've read my guide and understand the core concepts of Git, you'll be ready to start mastering it. At that point, you will get much more out of the tutorials and references that others have created.
 
+This guide is stored in a public Github repository. Not only can you read it online at Github. But you can also see the commits to see how the guide changed over time.
+
 
 Topic 1. What Git is.
 
@@ -112,10 +114,25 @@ Concept: Gitignore
     Files that are ignored won't show up as being untracked in git status. And won't be added when using git add.
 
 
-Topic X. A typical workflow
+Topic X. A typical workflow example
 
+Now we'll run you through an example of how a team might typically use Git.
 
+You'll start by creating a folder that contains all of your code and files. When you're ready to start using Git with that project, you can initialize a Git repo in that folder. Immediately, you'll have a master branch with no commits and all of the existing files and folders will be unstaged changes. You can stage the entire directory. The change will be represented as adding all of your files and folders since you started out with nothing and adding everything will get you to where you are.
 
+Since you want to store your work in the cloud, you find an instance of a Git server running on the Internet. Most people use Github or Bitbucket or something like that, either the free version or a paid version. But you can also run your own Git server if you really want to. If you have your credentials set up, you can push a copy of your Git repo to the cloud. This will act as your origin repo. You can set your local master to point to the origin's master branch as its upstream branch. This lets you keep track of how many commits you are ahead or behind that branch.
+
+Your co-worker, Betty, can clone the repo from the cloud to her local computer. If she wants, she can push new commits or new branches to origin.
+
+After working on the project for some time, you decide you want to code a new feature. You will create a new branch to put all of the new code changes related to that feature in. This is called a feature branch.
+
+Before you do that, you will need to make sure your master branch is up to to date. So you checkout master and pull any commits from origin/master to local/master. From master, you create a new branch and call it "new-video-player". (Or whatever describes the feature you're working on.) You create several commits on this branch until it's working to your satisfaction.
+
+During the time you worked on your feature branch, the master branch has moved ahead a couple commits. So it's good practice to merge the latest master branch head into your feature branch. That way all of the commits from master branch will be in your feature branch, including the ones that you didn't have when the feature branch was first created. This might cause some merge conflicts, in which case a new commit will be created to address those conflicts. This way, you'll have already dealt with those conflicts when it is time to merge the feature branch back into the master branch.
+
+When you're ready to share what you've built with your co-worker, you push your new branch to origin as a remote copy of that new branch. Now your co-worker, Betty, can copy the feature branch from origin/new-video-player to her local repo and check it out. She tests out the new feature that you built and looks over your code.
+
+Everything looks good, so you are ready to release your new feature. You merge your feature branch into your local master branch. Now your local master branch is ahead of the origin master branch. You push your master branch to origin so that it is all caught up with you. Now, the next time you deploy master branch to product, it will contain your new feature.
 
 
 Topic 5. Rebase
@@ -239,3 +256,6 @@ The company Atlassian, which makes tools for software developers, has some great
 GitHub.com also has some good, free resources and tutorials to help people learn Git.
 
 The official Git website has a free book that covers all the features of Git. It's called 'Pro Git': https://git-scm.com/book
+
+
+
