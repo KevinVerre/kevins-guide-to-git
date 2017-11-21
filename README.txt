@@ -81,7 +81,7 @@ You can think of a branch as being a series of commits. Commits are the units w
 
 The latest commit is called HEAD. The commits before it are HEAD~1, HEAD~2, HEAD~3, etc.
 
-What does a commit contain? A commit contains the following fields: a commit hash, a commit message, the changes, an author, a date
+What does a commit contain? A commit contains the following fields: a commit hash (which is used as an ID string), a commit message string, the changes (to all relevant files and folders), an author name string, a datetime. 
 
 
 
@@ -147,7 +147,11 @@ git checkout -
 	The dash argument will checkout the previous branch you were on before your current branch. (Similar to how `cd -` changes your directory to the previous one you were in.)
 
 git init “foldername"
+	create a new directory with "foldername" as the name. Then create a new git repo in that directory.
+git init ./
+	initialize a new git repo in the current directory
 git status
+	Shows the current status. Includes which branch you are on. What changes have been made to the files, and whether those unstaged changes or changes that have already been staged. Also shows if your current branch is behind its upstream branch. 
 git branch
 git branch -r
 git branch -v
@@ -159,6 +163,7 @@ git show
 git show HEAD
     Shows the contents of the HEAD commit (the latest commit in the current branch)
 git show “commit-hash"
+	Shows the contents of a particular commit.
 git log --graph
 	Prints out a graph so you can see how branches were merged
 git log -n 3
