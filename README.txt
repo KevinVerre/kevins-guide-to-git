@@ -136,6 +136,17 @@ When you're ready to share what you've built with your co-worker, you push your 
 Everything looks good, so you are ready to release your new feature. You merge your feature branch into your local master branch. Now your local master branch is ahead of the origin master branch. You push your master branch to origin so that it is all caught up with you. Now, the next time you deploy master branch to product, it will contain your new feature. Also, you might have a production branch on origin that represents the version of master that is deployed into production.
 
 
+Topic Y. Resolving conflicts
+
+Git keeps track of the files and the changes made to them over time. If it is a text file, it can point out which line(s) were changed and how. If it is an image file or some other non-text resource, Git will just notify you that the binary of the file has changed.
+
+In a single branch of sequential commits, a conflict cannot arise. One commit might modify a line. Then the next commit could possibly modify the same line. But it would always know the order. Both the "before" and "after" versions of that line would be appropriate.
+
+But when commits from one branch are merged into another branch, it's possible that the changes in the commits conflict. Imagine a line of code is original Version A. In one branch B, that line of code is changed from Version A to Version B. But in the other branch C, that line is changed from Version A to Version C. If you simply tried to apply change C after change B, it would result in a conflict because change C assumes Version A as a starting point rather than Version B.
+
+So what Git will do is mark all the conflicts across all files. Then ask you to manually merge them. Then when you're done merging them, it will create a new commit to merge them as you wanted. Depending on the logic of the code and the changes you are trying to make in each branch, you can decide what is best to do about the conflict. For example, you might decide that if each branch has different code at that line, that the merged version should contain both lines of code, one after another. Or you might decide that you want one and can delete the other. Or you might decide that you want a completely new version of that line that correctly combines the ideas behind both changes.
+
+
 Topic 5. Rebase
 
 Rebase is a powerful command that advanced Git users can use. It allows you to re-write the git commit history and juggle around commits. More on this coming soon.
