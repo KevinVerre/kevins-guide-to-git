@@ -6,6 +6,7 @@ Topic 1. What Git is.
 Topic 2. The difference between Git and Github
 Topic 3. Introduction to Branches and Commits
 Topic 4. Crafting commits
+Topic X. A typical workflow example
 Topic 5. Rebase
 Topic 6. Other software built on top of Git
 Topic A. Future work
@@ -122,7 +123,7 @@ You'll start by creating a folder that contains all of your code and files. When
 
 Since you want to store your work in the cloud, you find an instance of a Git server running on the Internet. Most people use Github or Bitbucket or something like that, either the free version or a paid version. But you can also run your own Git server if you really want to. If you have your credentials set up, you can push a copy of your Git repo to the cloud. This will act as your origin repo. You can set your local master to point to the origin's master branch as its upstream branch. This lets you keep track of how many commits you are ahead or behind that branch.
 
-Your co-worker, Betty, can clone the repo from the cloud to her local computer. If she wants, she can push new commits or new branches to origin.
+Your co-worker, Betty, can clone the repo from the cloud to her local computer. If she wants, she can push new commits or new branches to origin. To prove she is who she says she is, she might have to create a ssh key from a password.
 
 After working on the project for some time, you decide you want to code a new feature. You will create a new branch to put all of the new code changes related to that feature in. This is called a feature branch.
 
@@ -132,7 +133,7 @@ During the time you worked on your feature branch, the master branch has moved a
 
 When you're ready to share what you've built with your co-worker, you push your new branch to origin as a remote copy of that new branch. Now your co-worker, Betty, can copy the feature branch from origin/new-video-player to her local repo and check it out. She tests out the new feature that you built and looks over your code.
 
-Everything looks good, so you are ready to release your new feature. You merge your feature branch into your local master branch. Now your local master branch is ahead of the origin master branch. You push your master branch to origin so that it is all caught up with you. Now, the next time you deploy master branch to product, it will contain your new feature.
+Everything looks good, so you are ready to release your new feature. You merge your feature branch into your local master branch. Now your local master branch is ahead of the origin master branch. You push your master branch to origin so that it is all caught up with you. Now, the next time you deploy master branch to product, it will contain your new feature. Also, you might have a production branch on origin that represents the version of master that is deployed into production.
 
 
 Topic 5. Rebase
