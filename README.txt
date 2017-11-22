@@ -38,7 +38,7 @@ Git was created by Linus Torvalds, a famous programmer from Finland (but now liv
 
 Once git is installed on your computer, you can use it to create git projects called repositories. A repository, in computer science, is a place where code and data and stored. A git repository is simply a folder (“directory”) on your machine. We’ll call this the project folder or repository folder. Inside that folder is all of your project’s files and subfolders.
 
-Inside of the repository folder there is also a special subfolder called “.git”. The .git folder is created when you create a new git repository. As you use the git program to make changes to your project, the git program will save information inside the .git folder. You can look around inside the .git folder if you want, but it is not very interesting. It is simply a place for the .git program to store information without it getting in the way of your project’s files and folders.
+Inside of the repository folder there is also a special subfolder called “.git”. The hidden .git folder is what makes your directory a Git repo. The .git folder is created when you create a new git repository. As you use the git program to make changes to your project, the git program will save information inside the .git folder. You can look around inside the .git folder if you want, but it is not necessary to know much about it in order to use Git. It is simply a place for the .git program to store information without it getting in the way of your project’s files and folders. Whenever you run a Git command, the Git program will look for that hidden .git folder and use the files and folders inside of it to find information about commits, branches, etc.
 
 In Unix, files and folders whose name starts with a period are not shown by default when using the “ls” command to list the contents of a folder. Instead you have to use “ls -a”, which will list all of the contents of a folder, including files and folders that begin with a period. So if you do “ls -a” inside of a git repository folder, you should see the .git subdirectory.
 
@@ -92,7 +92,9 @@ The latest commit on the current branch is called HEAD. The commits before it ar
 
 A commit is a collection of changes to the repository. And a branch is a collection of commits that is the result of all the commits being applied one after another. They are called branches because they form a tree structure. Typically a secondary branch of commits branches off from another more primary branch. Then, if you later want that secondary branch to be included back into the main branch, you can merge it into the main branch.
 
-What does a commit contain? A commit contains the following fields: a commit hash (which is used as an ID string), a commit message string, the changes (to all relevant files and folders), an author name string, a datetime. 
+What does a commit contain? A commit contains the following fields: a commit hash (which is used as an ID string), a commit message string, the changes (to all relevant files and folders), an author name string, a datetime.
+
+Git also a feature called Tags. These let you give a String name to a particular commit which can be used to refer to that commit elsewhere. But many people use Git without using tags, so I consider it an advanced feature.
 
 
 
