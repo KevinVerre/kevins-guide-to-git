@@ -27,6 +27,8 @@ But once you've read my guide and understand the core concepts of Git, you'll be
 
 This guide is stored in a public Github repository. Not only can you read it online at Github. But you can also see the commits to see how the guide changed over time.
 
+Towards the end of this guide is section of Commands You Should Know. Feel free to skip to that section if you already know a lot about git and just want to learn some new tricks.
+
 
 Topic 1. What Git is.
 
