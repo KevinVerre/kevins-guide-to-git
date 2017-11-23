@@ -1,4 +1,4 @@
-"Kevin's Guide to Git"
+# "Kevin's Guide to Git"
 
 Table of Contents:
 Topic 0. Introduction to Git and this Guide.
@@ -15,7 +15,7 @@ Topic B: Other resources
 
 
 
-Topic 0. Introduction to Git and this Guide.
+## Topic 0. Introduction to Git and this Guide.
 
 Git is the name of a "Version Control” (or "revision control") program that many computer programmers use to help them write software. Version control software helps programmers write software by allowing programs to save multiple versions of their projects at the same time, and then combine those versions later. It also helps teams of programmers to work together while writing the a piece of software.
 
@@ -31,7 +31,7 @@ Towards the end of this guide is section of Commands You Should Know. Feel free 
 
 
 
-Topic 1. What Git is.
+## Topic 1. What Git is.
 
 Git is a piece of software. In order to use git, it must be installed on your computer. Computers with Git installed can communicate with and send commands to other computers with Git installed. Of course, the other computer you are interacting with using your computer needs to know it can trust you, so it usually requires a password or a secret key. However, you can also use git just on a single computer. Git is a command line only program, which means you use it by typing in commands to the terminal or command prompt rather than using a graphical user interface. However, there are other programs that allow you to use Git with a graphical user interface. There are even websites that allow you to use git, such as GitHub and BitBucket.
 
@@ -67,7 +67,7 @@ In practice, you typically have a central git server running all of the time tha
 
 
 
-Topic 2. The difference between Git and Github
+## Topic 2. The difference between Git and Github
 
 It's common for beginners to mix up Git and Github. Git is a program that you can install on your computer. By default, it is a command line program without a user interface. Git allows you to share code files that are on your computer with other computers, such as your teammates or your company's server.
 
@@ -81,7 +81,7 @@ Github's website comes with a lot of tools to make using Git easier. You get to 
 
 
 
-Topic 3. Introduction to Branches and Commits
+## Topic 3. Introduction to Branches and Commits
 
 So your Git project repository is a folder that contains all of the subfolders and files for the project inside of it. A branch is a version of that folder. Each branch has a name and belongs to a repository. Each repository can have as many branches as you want. And if your repository has permission to interact with another repository for the same project, you can see their branches. Let’s say you want to have two different versions of your folder at the same time, you could do it just by having two branches. Or you could have two different branches that represent the exact same version of the project folder.
 
@@ -99,7 +99,7 @@ Git also a feature called Tags. These let you give a String name to a particular
 
 
 
-Topic 4. Crafting commits
+## Topic 4. Crafting commits
 
 A commit is a collection of changes to the repository. Changes to the repository can include adding a new file, removing a file, or changing the lines of a file. You create a commit by making changes to the repository, staging the changes you want to commit, and then creating a commit out of the staged changed. A change to the repository can either be staged or unstaged. A staged change is one that you are getting ready to use in a commit.
 
@@ -121,7 +121,7 @@ Concept: Gitignore
 
 
 
-Topic 5. A typical workflow example
+## Topic 5. A typical workflow example
 
 Now we'll run you through an example of how a team might typically use Git.
 
@@ -143,7 +143,7 @@ Everything looks good, so you are ready to release your new feature. You merge y
 
 
 
-Topic 6. Resolving conflicts
+## Topic 6. Resolving conflicts
 
 Git keeps track of the files and the changes made to them over time. If it is a text file, it can point out which line(s) were changed and how. If it is an image file or some other non-text resource, Git will just notify you that the binary of the file has changed.
 
@@ -155,7 +155,7 @@ So what Git will do is mark all the conflicts across all files. Then ask you to 
 
 
 
-Topic 7. Rebase and amend
+## Topic 7. Rebase and amend
 
 Rebase is a powerful command that advanced Git users can use. It allows you to re-write the git commit history and juggle around commits. You can even sort of edit a commit by replacing creating a replacement commit for it. You're actually not really editing the commit, but rather replacing it with a commit that is the old commit plus whatever new changes.
 
@@ -175,7 +175,7 @@ You can read more about rebase in Git's documentation "git rebase --help".
 
 
 
-Topic 8. Other software built on top of Git.
+## Topic 8. Other software built on top of Git.
 
 The most common software built on top of Git is programs that allow you to use Git with a GUI interface instead of the command line.
 
@@ -187,7 +187,7 @@ Other programs are built on top of Git and creatively take advantage of git's ab
 
 
 
-Topic A. Commands you should know.
+## Topic A. Commands you should know.
 
 git “command” --help
      Git will show you the Help page for the command if you add --help
@@ -278,7 +278,7 @@ git rebase -i HEAD~3
 
 
 
-Topic B. Other resources.
+## Topic B. Other resources.
 
 The company Atlassian, which makes tools for software developers, has some great educational web pages about Git. You can read these web pages for free. Atlassian is now the parent company of BitBucket, a product that competes with GitHub.
 
