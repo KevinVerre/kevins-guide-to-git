@@ -153,7 +153,13 @@ So what Git will do is mark all the conflicts across all files. Then ask you to 
 
 Topic 5. Rebase
 
-Rebase is a powerful command that advanced Git users can use. It allows you to re-write the git commit history and juggle around commits. More on this coming soon.
+Rebase is a powerful command that advanced Git users can use. It allows you to re-write the git commit history and juggle around commits. You can even sort of edit a commit by replacing creating a replacement commit for it. (A commit can't really be edited, it can only be removed and replaced).
+
+Rebase allows you to take one or more commits and re-apply them (with new changes) to the current branch. For example, you can use rebase to re-order the commits in a branch. You can also use rebase to move commits from one branch to another.
+
+
+
+You can read more about rebase in Git's documentation "git rebase --help".
 
 
 
@@ -262,6 +268,10 @@ git bisect
 	This is a tool (that comes with git) that you can use to find when a bug was introduced to your code. What it does is help you checkout old commit versions of your code. For each commit, you manually test for the bug and then you tell the command prompt whether or not the bug was present. If you have a script or command you could run to test for the bug, you can configure the bisect tool to run that command on every bisection.
 
 	Not everyone will need `git bisect` but it's nice to know that it's there if you ever need it for a giant project.
+
+git rebase -i <commit>
+git rebase -i HEAD~3
+	Starts a rebase procedure in Interactive Mode. Interactive mode allows you to see what commits will be re-applied and make any changes before they are re-applied. In the example HEAD~3, I am rebasing the last four commits onto my current branch, because the third commit before HEAD is the last one included in the rebase.
 
 
 
