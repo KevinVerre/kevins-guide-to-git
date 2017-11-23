@@ -7,12 +7,11 @@ Topic 2. The difference between Git and Github
 Topic 3. Introduction to Branches and Commits
 Topic 4. Crafting commits
 Topic X. A typical workflow example
-Topic 5. Rebase
+Topic 5. Rebase and amend
 Topic 6. Other software built on top of Git
 Topic A. Future work
 Topic B: Commands you should know.
 Topic C: Other resources
-
 
 
 Topic 0. Introduction to Git and this Guide.
@@ -151,15 +150,23 @@ But when commits from one branch are merged into another branch, it's possible t
 So what Git will do is mark all the conflicts across all files. Then ask you to manually merge them. Then when you're done merging them, it will create a new commit to merge them as you wanted. Depending on the logic of the code and the changes you are trying to make in each branch, you can decide what is best to do about the conflict. For example, you might decide that if each branch has different code at that line, that the merged version should contain both lines of code, one after another. Or you might decide that you want one and can delete the other. Or you might decide that you want a completely new version of that line that correctly combines the ideas behind both changes.
 
 
-Topic 5. Rebase
+Topic 5. Rebase and amend
 
-Rebase is a powerful command that advanced Git users can use. It allows you to re-write the git commit history and juggle around commits. You can even sort of edit a commit by replacing creating a replacement commit for it. (A commit can't really be edited, it can only be removed and replaced).
+Rebase is a powerful command that advanced Git users can use. It allows you to re-write the git commit history and juggle around commits. You can even sort of edit a commit by replacing creating a replacement commit for it. You're actually not really editing the commit, but rather replacing it with a commit that is the old commit plus whatever new changes.
 
-Rebase allows you to take one or more commits and re-apply them (with new changes) to the current branch. For example, you can use rebase to re-order the commits in a branch. You can also use rebase to move commits from one branch to another.
+Rebase allows you to take one or more commits and re-apply them (with new changes) to the current branch. For example, you can use rebase to re-order the commits in a branch. Or you can split a single commit into two commits. Or to combine two commits into a single commit. Or you can remove a commit from a branch. Or you can edit the commit messages.
 
+You can also use rebase to move commits from one branch to another. In this case, it is possible to have merge conflicts just like you would when merging two branches.
 
+I use Interactive Mode (git rebase -i) when rebasing. This brings up a little text file that you edit in Vim. This file acts as instructions for the rebase. When you save and exit, the rebase procedes using those instructions.
+
+Rebasing is considered a somewhat dangerous action because it can be used to remove commits. And any time you edit a commit you are really just deleting it and replacing it with a new commit. As long as you are only deleting commits on a local branch that you haven't pushed anywhere, this is not an issue. For example, I will sometimes rebase commits in order to combine multiple commits into a single more comprehensive commit to make the commit history cleaner.
+
+Things can get messy if you rebase commits on a branch that has already been pushed to the origin repo or a branch being used by someone else. Because now your version of the branch is missing commits that the original had, and has different commits instead. This is essentially a meta merge conflict, because Git doesn't know which commits should be included in the branch. Those conflicting commits have to be manually resolved in order for the two branches to get in-sync again. It's not the end of the world if it happens, but that's why it is considered bad practice to rebase a branch's commits that have already been pushed.
 
 You can read more about rebase in Git's documentation "git rebase --help".
+
+"git commit --amend" is a handy command to know. It is essentially a very small, quick and easy rebase. It only modifies the most recent commit on the current branch (HEAD). It allows you to modify the commit message for that commit. Also, any changes that are currently staged when this command is run, will be included as part of that commit. Of course, behind the scenes what this is doing is actually deleting the commit and creating a new one to replace it, with a new hash ID and everything. This lets you quickily and easily add something that you forgot to write or stage into a commit you just created.
 
 
 
@@ -269,9 +276,9 @@ git bisect
 
 	Not everyone will need `git bisect` but it's nice to know that it's there if you ever need it for a giant project.
 
-git rebase -i <commit>
+git rebase -i <commit/branch>
 git rebase -i HEAD~3
-	Starts a rebase procedure in Interactive Mode. Interactive mode allows you to see what commits will be re-applied and make any changes before they are re-applied. In the example HEAD~3, I am rebasing the last four commits onto my current branch, because the third commit before HEAD is the last one included in the rebase.
+	Starts a rebase procedure in Interactive Mode. Interactive mode allows you to see what commits will be re-applied and make any changes before they are re-applied. In the example HEAD~3, I am rebasing the last three commits of my current branch. The fourth to last commit (3 commits before HEAD) is acting as the end of the branch and I'm rebasing all of the commits that come after HEAD~3 on top of HEAD~3.
 
 
 
