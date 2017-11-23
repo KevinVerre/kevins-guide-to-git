@@ -6,12 +6,13 @@ Topic 1. What Git is.
 Topic 2. The difference between Git and Github
 Topic 3. Introduction to Branches and Commits
 Topic 4. Crafting commits
-Topic X. A typical workflow example
-Topic 5. Rebase and amend
-Topic 6. Other software built on top of Git
-Topic A. Future work
-Topic B: Commands you should know.
-Topic C: Other resources
+Topic 5. A typical workflow example
+Topic 6. Resolving conflicts
+Topic 7. Rebase and amend
+Topic 8. Other software built on top of Git
+Topic A: Commands you should know.
+Topic B: Other resources
+
 
 
 Topic 0. Introduction to Git and this Guide.
@@ -27,6 +28,7 @@ But once you've read my guide and understand the core concepts of Git, you'll be
 This guide is stored in a public Github repository. Not only can you read it online at Github. But you can also see the commits to see how the guide changed over time.
 
 Towards the end of this guide is section of Commands You Should Know. Feel free to skip to that section if you already know a lot about git and just want to learn some new tricks.
+
 
 
 Topic 1. What Git is.
@@ -118,7 +120,8 @@ Concept: Gitignore
     Files that are ignored won't show up as being untracked in git status. And won't be added when using git add.
 
 
-Topic X. A typical workflow example
+
+Topic 5. A typical workflow example
 
 Now we'll run you through an example of how a team might typically use Git.
 
@@ -139,7 +142,8 @@ When you're ready to share what you've built with your co-worker, you push your 
 Everything looks good, so you are ready to release your new feature. You merge your feature branch into your local master branch. Now your local master branch is ahead of the origin master branch. You push your master branch to origin so that it is all caught up with you. Now, the next time you deploy master branch to product, it will contain your new feature. Also, you might have a production branch on origin that represents the version of master that is deployed into production.
 
 
-Topic Y. Resolving conflicts
+
+Topic 6. Resolving conflicts
 
 Git keeps track of the files and the changes made to them over time. If it is a text file, it can point out which line(s) were changed and how. If it is an image file or some other non-text resource, Git will just notify you that the binary of the file has changed.
 
@@ -150,7 +154,8 @@ But when commits from one branch are merged into another branch, it's possible t
 So what Git will do is mark all the conflicts across all files. Then ask you to manually merge them. Then when you're done merging them, it will create a new commit to merge them as you wanted. Depending on the logic of the code and the changes you are trying to make in each branch, you can decide what is best to do about the conflict. For example, you might decide that if each branch has different code at that line, that the merged version should contain both lines of code, one after another. Or you might decide that you want one and can delete the other. Or you might decide that you want a completely new version of that line that correctly combines the ideas behind both changes.
 
 
-Topic 5. Rebase and amend
+
+Topic 7. Rebase and amend
 
 Rebase is a powerful command that advanced Git users can use. It allows you to re-write the git commit history and juggle around commits. You can even sort of edit a commit by replacing creating a replacement commit for it. You're actually not really editing the commit, but rather replacing it with a commit that is the old commit plus whatever new changes.
 
@@ -170,7 +175,7 @@ You can read more about rebase in Git's documentation "git rebase --help".
 
 
 
-Topic 6. Other software built on top of Git.
+Topic 8. Other software built on top of Git.
 
 The most common software built on top of Git is programs that allow you to use Git with a GUI interface instead of the command line.
 
@@ -181,17 +186,8 @@ Some text editors and IDEs come with built in Git functionality. For example, Ap
 Other programs are built on top of Git and creatively take advantage of git's abilities to keep different versions of files in sync. For example, Ruby on Rail's package manager "RubyGems" uses Git repos to store and share code.
 
 
-Topic A. Future work. Future topics to write about:
 
-Concept: Working with Remote branches
-Concept: Merging branches
-Concept: Combining branches and commits with rebase
-Concept: Managing conflicts
-Concept: What happens when you resolve a conflict?
-
-
-
-Topic B. Commands you should know.
+Topic A. Commands you should know.
 
 git “command” --help
      Git will show you the Help page for the command if you add --help
@@ -282,7 +278,7 @@ git rebase -i HEAD~3
 
 
 
-Topic C. Other resources.
+Topic B. Other resources.
 
 The company Atlassian, which makes tools for software developers, has some great educational web pages about Git. You can read these web pages for free. Atlassian is now the parent company of BitBucket, a product that competes with GitHub.
 
