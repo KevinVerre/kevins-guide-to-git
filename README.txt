@@ -93,7 +93,7 @@ The latest commit on the current branch is called HEAD. The commits before it ar
 
 A commit is a collection of changes to the repository. And a branch is a collection of commits that is the result of all the commits being applied one after another. They are called branches because they form a tree structure. Typically a secondary branch of commits branches off from another more primary branch. Then, if you later want that secondary branch to be included back into the main branch, you can merge it into the main branch.
 
-What does a commit contain? A commit contains the following fields: a commit hash (which is used as an ID string), a commit message string, the changes (to all relevant files and folders), an author name string, a datetime.
+What does a commit contain? A commit contains the following fields: a commit hash (which is used as an ID string), a commit message string, the changes (to all relevant files and folders), an author name string, a datetime. You identify a commit by its commit hash. But you don't have to use the whole thing: if you get the first several characters Git will try to figure out which commit you are referring to. This hash comes from a hash function that takes in all of the data related to the commit (including the commit message). Which you can't really "edit" a commit, but instead have to replace it with a new commit with a new hash.
 
 Git also a feature called Tags. These let you give a String name to a particular commit which can be used to refer to that commit elsewhere. But many people use Git without using tags, so I consider it an advanced feature.
 
