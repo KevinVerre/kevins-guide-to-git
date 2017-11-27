@@ -19,9 +19,9 @@ Topic B: Other resources
 
 Git is the name of a "Version Control” (or "revision control") program that many computer programmers use to help them write software. Version control software helps programmers write software by allowing programs to save multiple versions of their projects at the same time, and then combine those versions later. It also helps teams of programmers to work together while writing the a piece of software.
 
-Programmers who are git experts can use Git to more quickly and more easily write code. Unfortunately, git is very difficult to use and understand. The purpose of this guide is to help people get better at using git. It will be helpful for both beginners and experienced users. Because git is so difficult to use, many experienced git users still have a lot to learn.
+Programmers who are Git experts can use Git to more quickly and more easily write code. Unfortunately, learning to use Git is very difficult and intimidating. The purpose of this guide is to help people get better at using git. It will be helpful for both beginners and experienced users. Because git is so difficult to use, many experienced git users still have a lot to learn.
 
-There are lots of resources online that can help you learn about how to use git. However, I'm writing this guide to make it easier to learn. For one thing, those guides can be very difficult to understand. Another thing, those resources sometimes do a poor job of explaining the core concepts of git. Instead they often focus on the git commands without giving them context. They can leave out a lot of information that if you knew you would have a much easier time learning and using git. If you understand the core concepts of git you will be better prepared to make proper use of the commands.
+There are lots of resources online that can help you learn about how to use git. However, I'm writing this guide to make it easier to learn. For one thing, those guides can be very difficult to understand. Another thing, those resources sometimes do a poor job of explaining the core concepts of git. Instead they often focus on the Git commands without giving them context. They can leave out a lot of information that if you knew you would have a much easier time learning and using Git. If you understand the core concepts of git you will be better prepared to make proper use of the commands.
 
 But once you've read my guide and understand the core concepts of Git, you'll be ready to start mastering it. At that point, you will get much more out of the tutorials and references that others have created.
 
@@ -32,6 +32,8 @@ Towards the end of this guide is section of Commands You Should Know. Feel free 
 
 
 ## Topic 1. What Git is.
+
+Imagine you are creating a software project. It could be a software application, a website, a mobile app, a script, or anything. You have a folder that contains all of the files relevant to that project: code files, image files, subfolders, maybe some data files, etc. Git is a tool to let you save different versions of that folder. Then you can switch back to older versions if needed. You can also work on multiple different versions (called branches) at the same time and combine them later. The changes between two versions are stored as a list of committed changes called a "commit".
 
 Git is a piece of software. In order to use git, it must be installed on your computer. Computers with Git installed can communicate with and send commands to other computers with Git installed. Of course, the other computer you are interacting with using your computer needs to know it can trust you, so it usually requires a password or a secret key. However, you can also use git just on a single computer. Git is a command line only program, which means you use it by typing in commands to the terminal or command prompt rather than using a graphical user interface. However, there are other programs that allow you to use Git with a graphical user interface. There are even websites that allow you to use git, such as GitHub and BitBucket.
 
@@ -101,7 +103,7 @@ Git also a feature called Tags. These let you give a String name to a particular
 
 ## Topic 4. Crafting commits
 
-A commit is a collection of changes to the repository. Changes to the repository can include adding a new file, removing a file, or changing the lines of a file. You create a commit by making changes to the repository, staging the changes you want to commit, and then creating a commit out of the staged changed. A change to the repository can either be staged or unstaged. A staged change is one that you are getting ready to use in a commit.
+A commit is a collection of changes to the repository. Changes to the repository can include adding a new file, removing a file, or changing the lines within a file.  A change to the repository can either be staged or unstaged. A staged change is one that you are getting ready to use in a commit. You create a commit by making changes to the repository, staging the changes you want to commit, and then creating a commit out of the staged changed.
 
 The command “git status” will show you the status of all of the changes made to the repository since the last commit. It will show you if files were added, removed, or changed. The command “git diff” will show you how the files have changed. The command “git diff --staged” will show the changes to the repository that are staged. By default, “git diff” will show you the differences for the entire repository. You can also show the changes to a particular file by using “git diff FILENAME”. The repository you are working on is sometimes called the “working directory” and the differences that you’ve made are changes to the “working tree”. Another name for the stage is the “index”.
 
@@ -117,7 +119,7 @@ You can also unstage a change if you decide you don’t want it.
 
 Concept: Gitignore
     Sometimes you want to have files in your repository folder without having those files be "tracked" as part of the repository. So you need a way to tell git which files in your repository folder should not be tracked. You do this by creating .gitignore files inside of your repository.
-    Files that are ignored won't show up as being untracked in git status. And won't be added when using git add.
+    Files that are ignored won't show up as being untracked in git status. And they won't be added to the staging area when using git add.
 
 
 
