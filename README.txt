@@ -225,6 +225,8 @@ git log -n 3
 	Use -n x to only show information about the X latest commits
 git log --oneline
 	Use the --oneline argument to only print out one line per git commit
+git log --reverse
+	This flag shows commits beginning from oldest to newest instead of newsest to older.
 git fetch
 	You local repository stores information about what it knows about the remote repository. Calling git fetch tells git to communicate with the remote repository and update what your local repository knows about it.
 
