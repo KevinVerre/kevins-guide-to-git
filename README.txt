@@ -10,7 +10,10 @@ Topic 5. A typical workflow example
 Topic 6. Resolving conflicts
 Topic 7. Rebase and amend
 Topic 8. Other software built on top of Git
+Topic 9. Aliases and Auto-Complete
+
 Topic A: Commands you should know.
+
 Topic B: Other resources
 
 
@@ -186,6 +189,35 @@ Some text editors and IDEs come with built in Git functionality. For example, Ap
 "Gitless" is a command line interface built on top of git that is designed to be easiler to learn how to use than Git.
 
 Other programs are built on top of Git and creatively take advantage of git's abilities to keep different versions of files in sync. For example, Ruby on Rail's package manager "RubyGems" uses Git repos to store and share code.
+
+
+
+## Topic 9. Aliases and tab-completion
+
+Once you get good at using Git, you'll want to learn how to use git faster. There are two great ways to do this: aliases and autocomplete.
+
+You can setup aliases to make git commands shorter so that you don't have to type as much to run a command. There are (at least) two different places you can configure this.
+
+The first is in the global git config file for your username. By default, this is a file stored in ~/.gitconfig . You designate the alias section of the config file with [alias]. Here are some that I have in mine:
+
+        co = checkout
+        ci = commit
+        amend = commit --amend
+        s = status
+        st = status
+        sh = show
+        b = branch
+        br = branch
+        p = pull
+        d = diff
+        l = log
+        a = add
+
+You can also create aliases for your terminal, such as your ~/.bashprofile. Example: alias gs='git status '
+
+Git also has a tab auto-completion tool. This way you only have to start typing the name of a branch (or other identifier), hit tab, and it will try to finish the complete name. It doesn't come built in with Git. You have to I'd call it semi-official since it's available in the same repo as git's official source code. But it's not part of their main project. You can download the version for bash from here, and then source it in your bash_profile:
+
+https://github.com/git/git/tree/master/contrib/completion
 
 
 
