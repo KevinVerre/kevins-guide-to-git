@@ -316,6 +316,8 @@ git rebase -i HEAD~3
 
 ## Topic B. Other resources.
 
+You can find collections of Git tips and tricks online, such as this list that appears in a Github repo: https://github.com/git-tips/tips
+
 The company Atlassian, which makes tools for software developers, has some great educational web pages about Git. You can read these web pages for free. Atlassian is now the parent company of BitBucket, a product that competes with GitHub.
 
 GitHub.com also has some good, free resources and tutorials to help people learn Git.
