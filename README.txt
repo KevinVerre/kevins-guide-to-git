@@ -312,6 +312,9 @@ git rebase -i <commit/branch>
 git rebase -i HEAD~3
 	Starts a rebase procedure in Interactive Mode. Interactive mode allows you to see what commits will be re-applied and make any changes before they are re-applied. In the example HEAD~3, I am rebasing the last three commits of my current branch. The fourth to last commit (3 commits before HEAD) is acting as the end of the branch and I'm rebasing all of the commits that come after HEAD~3 on top of HEAD~3.
 
+git remote prune origin
+	When you fetch the list of remote branches from a remote repo (typically origin), it writes down the list of those remote branches. It keeps the branches in that list of references EVEN AFTER the branch has been deleted on the remote repo. If you use `git branch -r` to show the remote branches, those deleted branches will still show up in the list of branch names. To remove them from that list use `git remote prune <origin or other remote repo name>`
+
 
 
 ## Topic B. Other resources.
