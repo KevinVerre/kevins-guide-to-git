@@ -198,24 +198,25 @@ Once you get good at using Git, you'll want to learn how to use git faster. Ther
 
 You can setup aliases to make git commands shorter so that you don't have to type as much to run a command. There are (at least) two different places you can configure this.
 
-The first is in the global git config file for your username. By default, this is a file stored in ~/.gitconfig . You designate the alias section of the config file with [alias]. Here are some that I have in mine:
+The first is in the global git config file for your username. By default, this is a file stored in ~/.gitconfig . Edit that your user's .gitconfig file in order to manage your git configuration. You designate the alias section of the config file with [alias]. Here are some that I have in mine:
 
-        co = checkout
-        ci = commit
-        amend = commit --amend
-        s = status
-        st = status
-        sh = show
-        b = branch
-        br = branch
-        p = pull
-        d = diff
-        l = log
-        a = add
+[alias]
+  co = checkout
+  ci = commit
+  amend = commit --amend
+  s = status
+  st = status
+  sh = show
+  b = branch
+  br = branch
+  p = pull
+  d = diff
+  l = log
+  a = add
 
 You can also create aliases for your terminal, such as your ~/.bashprofile. Example: alias gs='git status '
 
-Git also has a tab auto-completion tool. This way you only have to start typing the name of a branch (or other identifier), hit tab, and it will try to finish the complete name. It doesn't come built in with Git. You have to I'd call it semi-official since it's available in the same repo as git's official source code. But it's not part of their main project. You can download the version for bash from here, and then source it in your bash_profile:
+Git also has a tab auto-completion tool. Once the tab auto-complete tool is installed, you just have to start typing the name of a branch (or other identifier), hit tab, and it will try to finish the complete name. It doesn't come built in with Git, however. You have to download the code and install it. I'd call it semi-official since it's available in the same repo as git's official source code. But it's not part of their main project. You can download the version for bash from here, and then source it in your bash_profile:
 
 https://github.com/git/git/tree/master/contrib/completion
 
@@ -238,7 +239,7 @@ git init “foldername"
 git init ./
 	initialize a new git repo in the current directory
 git status
-	Shows the current status. Includes which branch you are on. What changes have been made to the files, and whether those unstaged changes or changes that have already been staged. Also shows if your current branch is behind its upstream branch. 
+	Shows the current status. Includes which branch you are on. What changes have been made to the files, and whether those unstaged changes or changes that have already been staged. Also shows if your current branch is behind its upstream branch.
 git branch
 git branch -r
 git branch -v
