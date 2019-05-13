@@ -214,7 +214,7 @@ The first is in the global git config file for your username. By default, this i
   l = log
   a = add
 
-You can also create aliases for your terminal, such as your ~/.bashprofile. Example: alias gs='git status '
+You can also create aliases for your terminal, such as your ~/.bash_profile. Example: alias gs='git status '
 
 Git also has a tab auto-completion tool. Once the tab auto-complete tool is installed, you just have to start typing the name of a branch (or other identifier), hit tab, and it will try to finish the complete name. It doesn't come built in with Git, however. You have to download the code and install it. I'd call it semi-official since it's available in the same repo as git's official source code. But it's not part of their main project. You can download the version for bash from here, and then source it in your bash_profile:
 
