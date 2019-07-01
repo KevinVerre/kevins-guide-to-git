@@ -305,9 +305,9 @@ git checkout <commit> <file>
 	I use this to revert to a particular version of a file. It will stage the differences for that file from <HEAD> to <commit>. So that if you committed, you would have the old version of the file.
 
 git bisect
-	This is a tool (that comes with git) that you can use to find when a bug was introduced to your code. What it does is help you checkout old commit versions of your code. For each commit, you manually test for the bug and then you tell the command prompt whether or not the bug was present. If you have a script or command you could run to test for the bug, you can configure the bisect tool to run that command on every bisection.
+	Most people will never use the bisect command. But it's nice to know that it's there if you want to use it. The purpose of the bisect command is to help you locate which commit first introduced a bug. You give it a start commit and an end commit. It will check out commits between them. For each commit it checks out, you manually test whether the bug is present in that commit and then mark it as present or not. Eventually you will find which commit was the first one to have the bug. It's called bisect because instead of searching the commits linearly one at a time, it uses a binary search to try to narrow the pool of suspect commits.
 
-	Not everyone will need `git bisect` but it's nice to know that it's there if you ever need it for a giant project.
+	If you have a script or command you could run to test for the presence of the bug, you can configure the bisect tool to run that command on every bisection.
 
 git rebase -i <commit/branch>
 git rebase -i HEAD~3
