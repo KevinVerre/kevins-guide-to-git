@@ -1,6 +1,8 @@
 # "Kevin's Guide to Git"
 
+
 Table of Contents:
+
 Topic 0. Introduction to Git and this Guide.
 Topic 1. What Git is.
 Topic 2. The difference between Git and Github
@@ -13,12 +15,13 @@ Topic 8. Other software built on top of Git
 Topic 9. Aliases and Auto-Complete
 
 Topic A: Commands you should know.
-
 Topic B: Other resources
 
 
 
+
 ## Topic 0. Introduction to Git and this Guide.
+
 
 Git is the name of a "Version Control” (or "revision control") program that many computer programmers use to help them write software. Version control software helps programmers write software by allowing programs to save multiple versions of their projects at the same time, and then combine those versions later. It also helps teams of programmers to work together while writing the a piece of software.
 
@@ -34,7 +37,9 @@ Towards the end of this guide is section of Commands You Should Know. Feel free 
 
 
 
+
 ## Topic 1. What Git is.
+
 
 Imagine you are creating a software project. It could be a software application, a website, a mobile app, a script, or anything. You have a folder that contains all of the files relevant to that project: code files, image files, subfolders, maybe some data files, etc. Git is a tool to let you save different versions of that folder. Then you can switch back to older versions if needed. You can also work on multiple different versions (called branches) at the same time and combine them later. The changes between two versions are stored as a list of committed changes called a "commit".
 
@@ -72,7 +77,9 @@ In practice, you typically have a central git server running all of the time tha
 
 
 
+
 ## Topic 2. The difference between Git and Github
+
 
 It's common for beginners to mix up Git and Github. Git is a program that you can install on your computer. By default, it is a command line program without a user interface. Git allows you to share code files that are on your computer with other computers, such as your teammates or your company's server.
 
@@ -86,7 +93,9 @@ Github's website comes with a lot of tools to make using Git easier. You get to 
 
 
 
+
 ## Topic 3. Introduction to Branches and Commits
+
 
 So your Git project repository is a folder that contains all of the subfolders and files for the project inside of it. A branch is a version of that folder. Each branch has a name and belongs to a repository. Each repository can have as many branches as you want. And if your repository has permission to interact with another repository for the same project, you can see their branches. Let’s say you want to have two different versions of your folder at the same time, you could do it just by having two branches. Or you could have two different branches that represent the exact same version of the project folder.
 
@@ -100,11 +109,17 @@ A commit is a collection of changes to the repository. And a branch is a collect
 
 What does a commit contain? A commit contains the following fields: a commit hash (which is used as an ID string), a commit message string, the changes (to all relevant files and folders), an author name string, a datetime. You identify a commit by its commit hash. But you don't have to use the whole thing: if you get the first several characters Git will try to figure out which commit you are referring to. This hash comes from a hash function that takes in all of the data related to the commit (including the commit message). Which you can't really "edit" a commit, but instead have to replace it with a new commit with a new hash.
 
-Git also a feature called Tags. These let you give a String name to a particular commit which can be used to refer to that commit elsewhere. But many people use Git without using tags, so I consider it an advanced feature.
+Each commit also contains a pointer to the commit that comes before it. A branch is really just a pointer to a commit. And then that commit has a pointer to the previous commit, and that commit has a pointer to its previous commit, etc.
+
+Git also a feature called Tags. But many people use Git without using tags, so I consider it a more advanced feature.
+
+Tags let you give a name (a string) to a particular commit. This is helpful because the string tag is easier to remember and understand than the commit hash. Both tags and branches are pointers to a particular commit. Like branches and commits, you can checkout a tag. The difference between a tag and a branch is tha the branch will point to the latest commit as you add more commits to the current branch. Where as tags are used to point to the same commit even as the branch grows beyond. Imagine you have a master branch for your software. The branch master always points to the most recent commit. But every time you launch a new version of your software you could create a tag that points to the latest commit to be included in that version. You could name the tag with the version number of your software launch. So if you created tags for different versions of your software, you could easily see which commit was the last commit to be included for any version. If you created tags for all versions of your software you could easily check out old versions of your software.
+
 
 
 
 ## Topic 4. Crafting commits
+
 
 A commit is a collection of changes to the repository. Changes to the repository can include adding a new file, removing a file, or changing the lines within a file.  A change to the repository can either be staged or unstaged. A staged change is one that you are getting ready to use in a commit. You create a commit by making changes to the repository, staging the changes you want to commit, and then creating a commit out of the staged changed.
 
@@ -120,13 +135,15 @@ Sometimes you will want to remove a change from the stage. As “git status” w
 
 You can also unstage a change if you decide you don’t want it.
 
+
 Concept: Gitignore
-    Sometimes you want to have files in your repository folder without having those files be "tracked" as part of the repository. So you need a way to tell git which files in your repository folder should not be tracked. You do this by creating .gitignore files inside of your repository.
-    Files that are ignored won't show up as being untracked in git status. And they won't be added to the staging area when using git add.
+    Sometimes you want to have files in your repository folder without having those files be "tracked" as part of the repository. So you need a way to tell git which files in your repository folder should not be tracked. You do this by creating .gitignore files inside of your repository. Files that are ignored won't show up as being untracked in git status. And they won't be added to the staging area when using `git add .`
+
 
 
 
 ## Topic 5. A typical workflow example
+
 
 Now we'll run you through an example of how a team might typically use Git.
 
@@ -148,7 +165,9 @@ Everything looks good, so you are ready to release your new feature. You merge y
 
 
 
+
 ## Topic 6. Resolving conflicts
+
 
 Git keeps track of the files and the changes made to them over time. If it is a text file, it can point out which line(s) were changed and how. If it is an image file or some other non-text resource, Git will just notify you that the binary of the file has changed.
 
@@ -160,7 +179,9 @@ So what Git will do is mark all the conflicts across all files. Then ask you to 
 
 
 
+
 ## Topic 7. Rebase and amend
+
 
 Rebase is a powerful command that advanced Git users can use. It allows you to re-write the git commit history and juggle around commits. You can even sort of edit a commit by replacing creating a replacement commit for it. You're actually not really editing the commit, but rather replacing it with a commit that is the old commit plus whatever new changes.
 
@@ -168,9 +189,9 @@ Rebase allows you to take one or more commits and re-apply them (with new change
 
 You can also use rebase to move commits from one branch to another. In this case, it is possible to have merge conflicts just like you would when merging two branches.
 
-I use Interactive Mode (git rebase -i) when rebasing. This brings up a little text file that you edit in Vim. This file acts as instructions for the rebase. When you save and exit, the rebase procedes using those instructions.
+I use Interactive Mode (git rebase -i) when rebasing. This brings up a little text file that you edit in Vim. This file acts as instructions for the rebase. When you save and exit, the rebase procedes using those instructions. It's good to learn some basic vim controls and commands. The i key puts you into insert mode, :wq is save and quit.
 
-Rebasing is considered a somewhat dangerous action because it can be used to remove commits. And any time you edit a commit you are really just deleting it and replacing it with a new commit. As long as you are only deleting commits on a local branch that you haven't pushed anywhere, this is not an issue. For example, I will sometimes rebase commits in order to combine multiple commits into a single more comprehensive commit to make the commit history cleaner.
+Rebasing is considered a somewhat dangerous action because it can be used to remove commits. It also lets you edit commits. And any time you edit a commit you are really just deleting it and replacing it with a new commit. As long as you are only deleting commits on a local branch that you haven't pushed anywhere, this is not an issue. For example, I will sometimes rebase commits in order to combine multiple commits into a single more comprehensive commit to make the commit history cleaner.
 
 Things can get messy if you rebase commits on a branch that has already been pushed to the origin repo or a branch being used by someone else. Because now your version of the branch is missing commits that the original had, and has different commits instead. This is essentially a meta merge conflict, because Git doesn't know which commits should be included in the branch. Those conflicting commits have to be manually resolved in order for the two branches to get in-sync again. It's not the end of the world if it happens, but that's why it is considered bad practice to rebase a branch's commits that have already been pushed.
 
@@ -180,11 +201,13 @@ You can read more about rebase in Git's documentation "git rebase --help".
 
 
 
+
 ## Topic 8. Other software built on top of Git.
+
 
 The most common software built on top of Git is programs that allow you to use Git with a GUI interface instead of the command line.
 
-Some text editors and IDEs come with built in Git functionality. For example, Apple's Xcode.
+Some text editors and IDEs come with built in Git functionality. For example, Apple's Xcode. I use Sublime Text 3 and it shows which lines have been modified but not yet staged.
 
 "Gitless" is a command line interface built on top of git that is designed to be easiler to learn how to use than Git.
 
@@ -192,7 +215,9 @@ Other programs are built on top of Git and creatively take advantage of git's ab
 
 
 
+
 ## Topic 9. Aliases and tab-completion
+
 
 Once you get good at using Git, you'll want to learn how to use git faster. There are two great ways to do this: aliases and autocomplete.
 
@@ -222,103 +247,144 @@ https://github.com/git/git/tree/master/contrib/completion
 
 
 
+
 ## Topic A. Commands you should know.
 
+
 git “command” --help
-     Git will show you the Help page for the command if you add --help
+    Git will show you the Help page for the command if you add --help
+
 git diff
-	Shows you the changes to files in the repository that haven't been added to the staging area.
+    Shows you the changes to files in the repository that haven't been added to the staging area.
+
 git diff --staged, git diff --cached
-	--staged and --cached do the same thing. Both show you which changes to your repository have been added to the staging area. Meaning, these changes have been selected to be part of the next commit
+  --staged and --cached do the same thing. Both show you which changes to your repository have been added to the staging area. Meaning, these changes have been selected to be part of the next commit
 
 git checkout -
-	The dash argument will checkout the previous branch you were on before your current branch. (Similar to how `cd -` changes your directory to the previous one you were in.)
+  The dash argument will checkout the previous branch you were on before your current branch. (Similar to how `cd -` changes your directory to the previous one you were in.)
 
 git init “foldername"
-	create a new directory with "foldername" as the name. Then create a new git repo in that directory.
+  create a new directory with "foldername" as the name. Then create a new git repo in that directory.
+
 git init ./
-	initialize a new git repo in the current directory
+  initialize a new git repo in the current directory
+
 git status
-	Shows the current status. Includes which branch you are on. What changes have been made to the files, and whether those unstaged changes or changes that have already been staged. Also shows if your current branch is behind its upstream branch.
+  Shows the current status. Includes which branch you are on. What changes have been made to the files, and whether those unstaged changes or changes that have already been staged. Also shows if your current branch is behind its upstream branch.
+
 git branch
+  Shows your local branches
+
 git branch -r
+  Shows the remote branches that the local repository knows about.
+
 git branch -v
-	Shows more verbose info about the branches, such as what is the latest commit in each
+  Shows more verbose info about the branches, such as what is the latest commit in each
+
 git branch -vv
-	Shows EVEN MORE verbose info about the branches, including the upstream branch for each branch that has one
-git show
-	Same thing as "git show HEAD"
+  Shows EVEN MORE verbose info about the branches, including the upstream branch for each branch that has one
+
+git show “commit-hash"
+  Given the hash (or even the first half of a hash), this shows the contents of a particular commit.
+
 git show HEAD
     Shows the contents of the HEAD commit (the latest commit in the current branch)
-git show “commit-hash"
-	Shows the contents of a particular commit.
-git log --graph
-	Prints out a graph so you can see how branches were merged
+
+git show
+  The default value is HEAD, so this is a shortcut for "git show HEAD"
+
+git log
+  Shows a list of commits and their commit messages. By default this opens in Vim. Which means if you know some basic Vim commands you can use them to navigate the logs. The most useful Vim commad is to search for text by typing forward slash and then the text you want to search for.
+
 git log -n 3
-	Use -n x to only show information about the X latest commits
+  Use -n x to only show information about the X latest commits
+
 git log --oneline
-	Use the --oneline argument to only print out one line per git commit
+  Use the --oneline argument to only print out one line per git commit. So you can see the commit hash and the first line of the commit message.
+
 git log --reverse
-	This flag shows commits beginning from oldest to newest instead of newsest to older.
+  This flag shows commits beginning from oldest to newest instead of newsest to older.
+
+git log --graph
+  Prints out a graph so you can see how branches were merged
+
 git fetch
-	You local repository stores information about what it knows about the remote repository. Calling git fetch tells git to communicate with the remote repository and update what your local repository knows about it.
+  You local repository stores information about what it knows about the remote repository. Calling git fetch tells git to communicate with the remote repository and update what your local repository knows about it. When you do a `git pull` it starts by calling `git fetch`.
 
 git fetch -p
-	By default, git fetch will update what your local repository knows about the remote repository. It will download new commits and branches. But if a branch is deleted on the remote repository, your local storage will not delete the corresponding local-remote branch. However, if you use -p for prune it will delete any local-remote branches that no longer have a corresponding branch in the remote repository.
+  By default, git fetch will update what your local repository knows about the remote repository. It will download new commits and branches. But if a branch is deleted on the remote repository, your local storage will not delete the corresponding local-remote branch. However, if you use -p for prune it will delete any local-remote branches that no longer have a corresponding branch in the remote repository.
 
 git merge “other_branch"
-	This will merge the “other_branch” into your current branch. Unless the merge is a fast-forward merge, this will create a “merge commit”.
+  This will merge the “other_branch” into your current branch. Unless the merge is a fast-forward merge, this will create a “merge commit”.
 
 git pull
-	This does two things. First, it does a git fetch. This means that your local repository will have all the updates from the remote repository stored in the form of remote branches. Also, if you are on a branch that has an upstream remote branch, it will merge that upstream remote branch (which is now a local-remote branch because of the Fetch) into your current branch
+  This does two things. First, it does a git fetch. This means that your local repository will have all the updates from the remote repository stored in the form of remote branches. Also, if you are on a branch that has an upstream remote branch, it will merge that upstream remote branch (which is now a locally stored copy of the remote branch because of the Fetch) into your current branch
 
 git add -p FILENAME
-	Have you ever wanted to stage some of the changes in a file but not all of the changes in that file? You can do this with the --patch argument, or -p for short. Git will go through all the changes in the file. To make this go quickly, it does it in "hunks" of lines instead of individual lines. A hunk is a group of lines that are next to each other. For each hunk, you can tell Git if you want to stage it, or move on to the next hunk. You can even tell it that you want to break down the hunk into individual lines if you want to get really specific about what you add to the staging area.
+  Have you ever wanted to stage some of the changes in a file but not all of the changes in that file? You can do this with the --patch argument, or -p for short. Git will go through all the changes in the file. To make this go quickly, it does it in "hunks" of lines instead of individual lines. A hunk is a group of lines that are next to each other. For each hunk, you can tell Git if you want to stage it, or move on to the next hunk. You can even tell it that you want to break down the hunk into individual lines if you want to get really specific about what you add to the staging area.
 
-	When this is done, try running the `git status` command. You'll see the filename appear in the both the list of files with staged changes and the list of files with unstaged changes.
+  When this is done, try running the `git status` command. You'll see the filename appear in the both the list of files with staged changes and the list of files with unstaged changes.
 
 git commit --amend
-	This makes changes to the latest commit on your current branch (HEAD). It allows you to do two things. One, it allows you to modify the commit message of your most recent commit (HEAD). It will also combines your staged changes with HEAD. I use this if I create a commit but then realize there is another change I want to make to the files and add to that commit. So this is a very convenient way to modify the contents of your most recent commit.
+  This makes changes to the latest commit on your current branch (HEAD). It allows you to do two things. One, it allows you to modify the commit message of your most recent commit (HEAD). It will also combines your staged changes with HEAD. I use this if I create a commit but then realize there is another change I want to make to the files and add to that commit. So this is a very convenient way to modify the contents of your most recent commit.
 
-	Note that this actually deletes your HEAD commit and creates a new commit (with a new commit hash) to replace it. It's a type of "rebase".
+  Note that this actually deletes your HEAD commit and creates a new commit (with a new commit hash) to replace it. It's a type of "rebase".
 
-	This is a very clean way of editing a commit you just made but haven't pushed or merged anywhere else. In this case, you're removing a commit from your current branch and relacing it with the new commit that contains the amendments.
+  This is a very clean way of editing a commit you just made but haven't pushed or merged anywhere else. In this case, you're removing a commit from your current branch and relacing it with the new commit that contains the amendments.
 
-	However, it can get a little ugly if you use it on a commit that you have pushed or merged to another branch. Because now there are two commits: the amended version on your current branch and the original version on some other branch. These two commits will conflict with each other if you try to merge them. Usually this isn't too bad since Git will know how to automatically resolve simple merge conflicts. But it can potentially get messy.
+  However, it can get a little ugly if you use it on a commit that you have pushed or merged to another branch. Because now there are two commits: the amended version on your current branch and the original version on some other branch. These two commits will conflict with each other if you try to merge them. Usually this isn't too bad since Git will know how to automatically resolve simple merge conflicts. But it can potentially get messy.
 
 git clean
-	Used for cleaning up (deleting) untracked files in your repo. Because this command deletes files from your computer, it requires an extra argument (-f) to force it to do anything
+  Used for cleaning up (deleting) untracked files in your repo. Because this command deletes files from your computer, it requires an extra argument (-f) to force it to do anything
+
 git clean --dry-run
-	The --dry-run argument prints out which files will be removed without actually removing any files
+  The --dry-run argument prints out which files will be removed without actually removing any files
+
 git clean -f
-	The -f argument (or --force) tells git that you are serious about removing those files
+  The -f argument (or --force) tells git that you are serious about removing those files
+
 git clean -d
-	Deletes untracked directories as well as files
+  Deletes untracked directories as well as files
 
 git blame "filename"
-	Show which commit (and which commit author) is responsible for each line of the file.
+  For each line of a file, see which commit hash is responsible for the latest change to that line. It also shows the author of the commit, as well as the first part of the commit message. This is a great because it let's you see when a line of code was added to a file. And who it was that committed it.
 
 git reset
-	I use this to get rid of commits
+  I use this to get rid of commits
 
 git checkout <commit> <file>
-	I use this to revert to a particular version of a file. It will stage the differences for that file from <HEAD> to <commit>. So that if you committed, you would have the old version of the file.
+  I use this to revert to a particular version of a file. It will stage the differences for that file from <HEAD> to <commit>. So that if you committed, you would have the old version of the file.
 
-git bisect
-	Most people will never use the bisect command. But it's nice to know that it's there if you want to use it. The purpose of the bisect command is to help you locate which commit first introduced a bug. You give it a start commit and an end commit. It will check out commits between them. For each commit it checks out, you manually test whether the bug is present in that commit and then mark it as present or not. Eventually you will find which commit was the first one to have the bug. It's called bisect because instead of searching the commits linearly one at a time, it uses a binary search to try to narrow the pool of suspect commits.
+git rebase <branch/commit>
+  Rebase the current branch on top of another branch. You can also use a commit hash and rebase on top of that.
 
-	If you have a script or command you could run to test for the presence of the bug, you can configure the bisect tool to run that command on every bisection.
+git rebase -i <branch/commit>
 
-git rebase -i <commit/branch>
 git rebase -i HEAD~3
-	Starts a rebase procedure in Interactive Mode. Interactive mode allows you to see what commits will be re-applied and make any changes before they are re-applied. In the example HEAD~3, I am rebasing the last three commits of my current branch. The fourth to last commit (3 commits before HEAD) is acting as the end of the branch and I'm rebasing all of the commits that come after HEAD~3 on top of HEAD~3.
+  Starts a rebase procedure in Interactive Mode. Interactive mode allows you to see what commits will be re-applied and make any changes before they are re-applied. In the example HEAD~3, I am rebasing the last three commits of my current branch. The fourth to last commit (3 commits before HEAD) is acting as the end of the branch and I'm rebasing all of the commits that come after HEAD~3 on top of HEAD~3.
+
+git rebase --continue
+  If you're some commits from a branch on top of another branch, there may be conflcts that git cannot merge automatically. In that case you have to manually fix the conflicts. After you've saved your changes, stage the files that you changed, and use --continue to continue. As you are rebasing, Git tries to apply each commit on top of the other one at a time. So if you have several commits that cause conflicts you may have to stop, manually fix the conflicts, and continue several times.
+
+git remote
+  This shows you a list of remote repositiories that you are that you are currently tracking. But most people only connect to a single remote repo. By default, the first remote repo you connect to is given the label "origin"
+
+git remote -v
+  This is useful because it shows you the URL of your remote repo(s). Also, you could have two different URLs for a single remote repo. One would be used for fetching and one would be used for pushing. But in most cases.
 
 git remote prune origin
-	When you fetch the list of remote branches from a remote repo (typically origin), it writes down the list of those remote branches. It keeps the branches in that list of references EVEN AFTER the branch has been deleted on the remote repo. If you use `git branch -r` to show the remote branches, those deleted branches will still show up in the list of branch names. To remove them from that list use `git remote prune <origin or other remote repo name>`
+  When you fetch the list of remote branches from a remote repo (typically origin), it writes down the list of those remote branches. It keeps the branches in that list of references EVEN AFTER the branch has been deleted on the remote repo. If you use `git branch -r` to show the remote branches, those deleted branches will still show up in the list of branch names. To remove them from that list use `git remote prune origin`. If you have more than one remote repo that your repo is connected to, you could replace origin with the name of a different remote repo.
+
+git bisect
+  Most people will never use the bisect command. But it's nice to know that it's there if you want to use it. The purpose of the bisect command is to help you locate which commit first introduced a bug. You give it a start commit and an end commit. It will check out commits between them. For each commit it checks out, you manually test whether the bug is present in that commit and then mark it as present or not. Eventually you will find which commit was the first one to have the bug. It's called bisect because instead of searching the commits linearly one at a time, it uses a binary search to try to narrow the pool of suspect commits.
+
+  If you have a script or command you could run to test for the presence of the bug, you can configure the bisect tool to run that command on every bisection.
+
 
 
 
 ## Topic B. Other resources.
+
 
 You can find collections of Git tips and tricks online, such as this list that appears in a Github repo: https://github.com/git-tips/tips
 
