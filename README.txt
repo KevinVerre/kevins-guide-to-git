@@ -15,6 +15,7 @@ Topic 8. Other software built on top of Git
 Topic 9. Aliases and Auto-Complete
 
 Topic A: Commands you should know.
+
 Topic B: Other resources
 
 
