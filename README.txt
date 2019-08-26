@@ -4,7 +4,7 @@
 Table of Contents:
 
 
-Topic A: Commands you should know.
+Topic A: Git Commands You Should Know.
 
 Topic 0. Introduction to Git and this Guide.
 Topic 1. What Git is.
@@ -18,6 +18,160 @@ Topic 8. Other software built on top of Git
 Topic 9. Aliases and Auto-Complete
 
 Topic B: Other resources
+
+
+
+
+
+## Topic A. Git Commands You Should Know.
+(Included at the beginning of the guide for easier reference)
+
+
+git --help
+  Lists some common commands and what they do.
+
+git <command> --help
+    Git will show you the Help page for a command if you add --help
+
+git status
+  Shows the current status. Includes which branch you are on. What changes have been made to the files, and whether those unstaged changes or changes that have already been staged. Also shows if your current branch is behind its upstream branch.
+
+git clone <URL to a Git Repo>
+  This clones a git repo. It makes a new folder in your current Present Working Directory (pwd). And downloads (saves) all of the contents of that git repo into that folder. This command is what you'll use if you want to work with a git repo that has already been initialized. Here's an example URL of a git repo that is hosted on Github.com: git@github.com:KevinVerre/kevins-guide-to-git.git
+  
+The URL can be in one of several different formats, such as ssh, ftp, or http/https. Similar to requesting a webpage, the URL will contain the domain name of the host server and a path that tells it what you are requested to be served. If the repo is private, you may also need to type in a username and password. Or you can set up your computer to automatically authenticate you by sending a public ssh_key.
+
+git init ./
+  initialize a new git repo in the current directory
+  
+git init <foldername>
+  create a new directory with "foldername" as the name. Then create a new git repo in that directory.
+
+git diff
+    Shows you the changes to files in the repository that haven't been added to the staging area.
+
+git diff --staged, git diff --cached
+  --staged and --cached do the same thing. Both show you which changes to your repository have been added to the staging area. Meaning, these changes have been selected to be part of the next commit
+
+git checkout -
+  The dash argument will checkout the previous branch you were on before your current branch. (Similar to how `cd -` changes your directory to the previous one you were in.)
+
+git branch
+  Shows your local branches
+
+git branch -r
+  Shows the remote branches that the local repository knows about.
+
+git branch -v
+  Shows more verbose info about the branches, such as what is the latest commit in each
+
+git branch -vv
+  Shows EVEN MORE verbose info about the branches, including the upstream branch for each branch that has one
+
+git checkout HEAD~2
+  Checkout the commit that is two commits prior to the commit that you are currently on. You will see a warning that you are in a "detached HEAD state" and that you may want to create a new branch. In other words, you have a commit checked out. But your state isn't set to be on any branch. Typically your state would be set to a branch that is pointing to a commit as its HEAD.
+
+git checkout -b <new_branch_name>
+  Creates a new branch with name <new_branch_name>. The new branch will be pointing to whatever commit is currently HEAD. If you're on a branch, this means you are creating a second branch that points to the same HEAD commit. But you can also call this from a "detached Head state".
+
+git checkout HEAD~2 -b <new_branch_name>
+  Checks out the commit that is two commits prior to your current HEAD commit. Then create a new branch that points to that commit as its HEAD and set your state to be that branch.
+
+git show “commit-hash"
+  Given the hash (or even the first half of a hash), this shows the contents of a particular commit.
+
+git show HEAD
+    Shows the contents of the HEAD commit (the latest commit in the current branch)
+
+git show
+  The default value is HEAD, so this is a shortcut for "git show HEAD"
+
+git log
+  Shows a list of commits and their commit messages. By default this opens in Vim. Which means if you know some basic Vim commands you can use them to navigate the logs. The most useful Vim commad is to search for text by typing forward slash and then the text you want to search for.
+
+git log -n 3
+  Use -n x to only show information about the X latest commits
+
+git log --oneline
+  Use the --oneline argument to only print out one line per git commit. So you can see the commit hash and the first line of the commit message.
+
+git log --reverse
+  This flag shows commits beginning from oldest to newest instead of newsest to older.
+
+git log --graph
+  Prints out a graph so you can see how branches were merged
+
+git fetch
+  You local repository stores information about what it knows about the remote repository. Calling git fetch tells git to communicate with the remote repository and update what your local repository knows about it. When you do a `git pull` it starts by calling `git fetch`.
+
+git fetch -p
+  By default, git fetch will update what your local repository knows about the remote repository. It will download new commits and branches. But if a branch is deleted on the remote repository, your local storage will not delete the corresponding local-remote branch. However, if you use -p for prune it will delete any local-remote branches that no longer have a corresponding branch in the remote repository.
+
+git merge “other_branch"
+  This will merge the “other_branch” into your current branch. Unless the merge is a fast-forward merge, this will create a “merge commit”.
+
+git pull
+  This does two things. First, it does a git fetch. This means that your local repository will have all the updates from the remote repository stored in the form of remote branches. Also, if you are on a branch that has an upstream remote branch, it will merge that upstream remote branch (which is now a locally stored copy of the remote branch because of the Fetch) into your current branch
+
+git add -p FILENAME
+  Have you ever wanted to stage some of the changes in a file but not all of the changes in that file? You can do this with the --patch argument, or -p for short. Git will go through all the changes in the file. To make this go quickly, it does it in "hunks" of lines instead of individual lines. A hunk is a group of lines that are next to each other. For each hunk, you can tell Git if you want to stage it, or move on to the next hunk. You can even tell it that you want to break down the hunk into individual lines if you want to get really specific about what you add to the staging area.
+
+  When this is done, try running the `git status` command. You'll see the filename appear in the both the list of files with staged changes and the list of files with unstaged changes.
+
+git commit --amend
+  This makes changes to the latest commit on your current branch (HEAD). It allows you to do two things. One, it allows you to modify the commit message of your most recent commit (HEAD). It will also combines your staged changes with HEAD. I use this if I create a commit but then realize there is another change I want to make to the files and add to that commit. So this is a very convenient way to modify the contents of your most recent commit.
+
+  Note that this actually deletes your HEAD commit and creates a new commit (with a new commit hash) to replace it. It's a type of "rebase".
+
+  This is a very clean way of editing a commit you just made but haven't pushed or merged anywhere else. In this case, you're removing a commit from your current branch and relacing it with the new commit that contains the amendments.
+
+  However, it can get a little ugly if you use it on a commit that you have pushed or merged to another branch. Because now there are two commits: the amended version on your current branch and the original version on some other branch. These two commits will conflict with each other if you try to merge them. Usually this isn't too bad since Git will know how to automatically resolve simple merge conflicts. But it can potentially get messy.
+
+git clean
+  Used for cleaning up (deleting) untracked files in your repo. Because this command deletes files from your computer, it requires an extra argument (-f) to force it to do anything
+
+git clean --dry-run
+  The --dry-run argument prints out which files will be removed without actually removing any files
+
+git clean -f
+  The -f argument (or --force) tells git that you are serious about removing those files
+
+git clean -d
+  Deletes untracked directories as well as files
+
+git blame "filename"
+  For each line of a file, see which commit hash is responsible for the latest change to that line. It also shows the author of the commit, as well as the first part of the commit message. This is a great because it let's you see when a line of code was added to a file. And who it was that committed it.
+
+git reset
+  I use this to get rid of commits
+
+git checkout <commit> <file>
+  I use this to revert to a particular version of a file. It will stage the differences for that file from <HEAD> to <commit>. So that if you committed, you would have the old version of the file.
+
+git rebase <branch/commit>
+  Rebase the current branch on top of another branch. You can also use a commit hash and rebase on top of that.
+
+git rebase -i <branch/commit>
+
+git rebase -i HEAD~3
+  Starts a rebase procedure in Interactive Mode. Interactive mode allows you to see what commits will be re-applied and make any changes before they are re-applied. In the example HEAD~3, I am rebasing the last three commits of my current branch. The fourth to last commit (3 commits before HEAD) is acting as the end of the branch and I'm rebasing all of the commits that come after HEAD~3 on top of HEAD~3.
+
+git rebase --continue
+  If you're some commits from a branch on top of another branch, there may be conflcts that git cannot merge automatically. In that case you have to manually fix the conflicts. After you've saved your changes, stage the files that you changed, and use --continue to continue. As you are rebasing, Git tries to apply each commit on top of the other one at a time. So if you have several commits that cause conflicts you may have to stop, manually fix the conflicts, and continue several times.
+
+git remote
+  This shows you a list of remote repositiories that you are that you are currently tracking. But most people only connect to a single remote repo. By default, the first remote repo you connect to is given the label "origin"
+
+git remote -v
+  This is useful because it shows you the URL of your remote repo(s). Also, you could have two different URLs for a single remote repo. One would be used for fetching and one would be used for pushing. But in most cases.
+
+git remote prune origin
+  When you fetch the list of remote branches from a remote repo (typically origin), it writes down the list of those remote branches. It keeps the branches in that list of references EVEN AFTER the branch has been deleted on the remote repo. If you use `git branch -r` to show the remote branches, those deleted branches will still show up in the list of branch names. To remove them from that list use `git remote prune origin`. If you have more than one remote repo that your repo is connected to, you could replace origin with the name of a different remote repo.
+
+git bisect
+  Most people will never use the bisect command. But it's nice to know that it's there if you want to use it. The purpose of the bisect command is to help you locate which commit first introduced a bug. You give it a start commit and an end commit. It will check out commits between them. For each commit it checks out, you manually test whether the bug is present in that commit and then mark it as present or not. Eventually you will find which commit was the first one to have the bug. It's called bisect because instead of searching the commits linearly one at a time, it uses a binary search to try to narrow the pool of suspect commits.
+
+  If you have a script or command you could run to test for the presence of the bug, you can configure the bisect tool to run that command on every bisection.
 
 
 
@@ -246,158 +400,6 @@ You can also create aliases for your terminal, such as your ~/.bash_profile. Exa
 Git also has a tab auto-completion tool. Once the tab auto-complete tool is installed, you just have to start typing the name of a branch (or other identifier), hit tab, and it will try to finish the complete name. It doesn't come built in with Git, however. You have to download the code and install it. I'd call it semi-official since it's available in the same repo as git's official source code. But it's not part of their main project. You can download the version for bash from here, and then source it in your bash_profile:
 
 https://github.com/git/git/tree/master/contrib/completion
-
-
-
-
-## Topic A. Commands you should know.
-
-
-git --help
-  Lists some common commands and what they do.
-
-git <command> --help
-    Git will show you the Help page for a command if you add --help
-
-git status
-  Shows the current status. Includes which branch you are on. What changes have been made to the files, and whether those unstaged changes or changes that have already been staged. Also shows if your current branch is behind its upstream branch.
-
-git clone <URL to a Git Repo>
-  This clones a git repo. It makes a new folder in your current Present Working Directory (pwd). And downloads (saves) all of the contents of that git repo into that folder. This command is what you'll use if you want to work with a git repo that has already been initialized. Here's an example URL of a git repo that is hosted on Github.com: git@github.com:KevinVerre/kevins-guide-to-git.git
-  
-The URL can be in one of several different formats, such as ssh, ftp, or http/https. Similar to requesting a webpage, the URL will contain the domain name of the host server and a path that tells it what you are requested to be served. If the repo is private, you may also need to type in a username and password. Or you can set up your computer to automatically authenticate you by sending a public ssh_key.
-
-git init ./
-  initialize a new git repo in the current directory
-  
-git init <foldername>
-  create a new directory with "foldername" as the name. Then create a new git repo in that directory.
-
-git diff
-    Shows you the changes to files in the repository that haven't been added to the staging area.
-
-git diff --staged, git diff --cached
-  --staged and --cached do the same thing. Both show you which changes to your repository have been added to the staging area. Meaning, these changes have been selected to be part of the next commit
-
-git checkout -
-  The dash argument will checkout the previous branch you were on before your current branch. (Similar to how `cd -` changes your directory to the previous one you were in.)
-
-git branch
-  Shows your local branches
-
-git branch -r
-  Shows the remote branches that the local repository knows about.
-
-git branch -v
-  Shows more verbose info about the branches, such as what is the latest commit in each
-
-git branch -vv
-  Shows EVEN MORE verbose info about the branches, including the upstream branch for each branch that has one
-
-git checkout HEAD~2
-  Checkout the commit that is two commits prior to the commit that you are currently on. You will see a warning that you are in a "detached HEAD state" and that you may want to create a new branch. In other words, you have a commit checked out. But your state isn't set to be on any branch. Typically your state would be set to a branch that is pointing to a commit as its HEAD.
-
-git checkout -b <new_branch_name>
-  Creates a new branch with name <new_branch_name>. The new branch will be pointing to whatever commit is currently HEAD. If you're on a branch, this means you are creating a second branch that points to the same HEAD commit. But you can also call this from a "detached Head state".
-
-git checkout HEAD~2 -b <new_branch_name>
-  Checks out the commit that is two commits prior to your current HEAD commit. Then create a new branch that points to that commit as its HEAD and set your state to be that branch.
-
-git show “commit-hash"
-  Given the hash (or even the first half of a hash), this shows the contents of a particular commit.
-
-git show HEAD
-    Shows the contents of the HEAD commit (the latest commit in the current branch)
-
-git show
-  The default value is HEAD, so this is a shortcut for "git show HEAD"
-
-git log
-  Shows a list of commits and their commit messages. By default this opens in Vim. Which means if you know some basic Vim commands you can use them to navigate the logs. The most useful Vim commad is to search for text by typing forward slash and then the text you want to search for.
-
-git log -n 3
-  Use -n x to only show information about the X latest commits
-
-git log --oneline
-  Use the --oneline argument to only print out one line per git commit. So you can see the commit hash and the first line of the commit message.
-
-git log --reverse
-  This flag shows commits beginning from oldest to newest instead of newsest to older.
-
-git log --graph
-  Prints out a graph so you can see how branches were merged
-
-git fetch
-  You local repository stores information about what it knows about the remote repository. Calling git fetch tells git to communicate with the remote repository and update what your local repository knows about it. When you do a `git pull` it starts by calling `git fetch`.
-
-git fetch -p
-  By default, git fetch will update what your local repository knows about the remote repository. It will download new commits and branches. But if a branch is deleted on the remote repository, your local storage will not delete the corresponding local-remote branch. However, if you use -p for prune it will delete any local-remote branches that no longer have a corresponding branch in the remote repository.
-
-git merge “other_branch"
-  This will merge the “other_branch” into your current branch. Unless the merge is a fast-forward merge, this will create a “merge commit”.
-
-git pull
-  This does two things. First, it does a git fetch. This means that your local repository will have all the updates from the remote repository stored in the form of remote branches. Also, if you are on a branch that has an upstream remote branch, it will merge that upstream remote branch (which is now a locally stored copy of the remote branch because of the Fetch) into your current branch
-
-git add -p FILENAME
-  Have you ever wanted to stage some of the changes in a file but not all of the changes in that file? You can do this with the --patch argument, or -p for short. Git will go through all the changes in the file. To make this go quickly, it does it in "hunks" of lines instead of individual lines. A hunk is a group of lines that are next to each other. For each hunk, you can tell Git if you want to stage it, or move on to the next hunk. You can even tell it that you want to break down the hunk into individual lines if you want to get really specific about what you add to the staging area.
-
-  When this is done, try running the `git status` command. You'll see the filename appear in the both the list of files with staged changes and the list of files with unstaged changes.
-
-git commit --amend
-  This makes changes to the latest commit on your current branch (HEAD). It allows you to do two things. One, it allows you to modify the commit message of your most recent commit (HEAD). It will also combines your staged changes with HEAD. I use this if I create a commit but then realize there is another change I want to make to the files and add to that commit. So this is a very convenient way to modify the contents of your most recent commit.
-
-  Note that this actually deletes your HEAD commit and creates a new commit (with a new commit hash) to replace it. It's a type of "rebase".
-
-  This is a very clean way of editing a commit you just made but haven't pushed or merged anywhere else. In this case, you're removing a commit from your current branch and relacing it with the new commit that contains the amendments.
-
-  However, it can get a little ugly if you use it on a commit that you have pushed or merged to another branch. Because now there are two commits: the amended version on your current branch and the original version on some other branch. These two commits will conflict with each other if you try to merge them. Usually this isn't too bad since Git will know how to automatically resolve simple merge conflicts. But it can potentially get messy.
-
-git clean
-  Used for cleaning up (deleting) untracked files in your repo. Because this command deletes files from your computer, it requires an extra argument (-f) to force it to do anything
-
-git clean --dry-run
-  The --dry-run argument prints out which files will be removed without actually removing any files
-
-git clean -f
-  The -f argument (or --force) tells git that you are serious about removing those files
-
-git clean -d
-  Deletes untracked directories as well as files
-
-git blame "filename"
-  For each line of a file, see which commit hash is responsible for the latest change to that line. It also shows the author of the commit, as well as the first part of the commit message. This is a great because it let's you see when a line of code was added to a file. And who it was that committed it.
-
-git reset
-  I use this to get rid of commits
-
-git checkout <commit> <file>
-  I use this to revert to a particular version of a file. It will stage the differences for that file from <HEAD> to <commit>. So that if you committed, you would have the old version of the file.
-
-git rebase <branch/commit>
-  Rebase the current branch on top of another branch. You can also use a commit hash and rebase on top of that.
-
-git rebase -i <branch/commit>
-
-git rebase -i HEAD~3
-  Starts a rebase procedure in Interactive Mode. Interactive mode allows you to see what commits will be re-applied and make any changes before they are re-applied. In the example HEAD~3, I am rebasing the last three commits of my current branch. The fourth to last commit (3 commits before HEAD) is acting as the end of the branch and I'm rebasing all of the commits that come after HEAD~3 on top of HEAD~3.
-
-git rebase --continue
-  If you're some commits from a branch on top of another branch, there may be conflcts that git cannot merge automatically. In that case you have to manually fix the conflicts. After you've saved your changes, stage the files that you changed, and use --continue to continue. As you are rebasing, Git tries to apply each commit on top of the other one at a time. So if you have several commits that cause conflicts you may have to stop, manually fix the conflicts, and continue several times.
-
-git remote
-  This shows you a list of remote repositiories that you are that you are currently tracking. But most people only connect to a single remote repo. By default, the first remote repo you connect to is given the label "origin"
-
-git remote -v
-  This is useful because it shows you the URL of your remote repo(s). Also, you could have two different URLs for a single remote repo. One would be used for fetching and one would be used for pushing. But in most cases.
-
-git remote prune origin
-  When you fetch the list of remote branches from a remote repo (typically origin), it writes down the list of those remote branches. It keeps the branches in that list of references EVEN AFTER the branch has been deleted on the remote repo. If you use `git branch -r` to show the remote branches, those deleted branches will still show up in the list of branch names. To remove them from that list use `git remote prune origin`. If you have more than one remote repo that your repo is connected to, you could replace origin with the name of a different remote repo.
-
-git bisect
-  Most people will never use the bisect command. But it's nice to know that it's there if you want to use it. The purpose of the bisect command is to help you locate which commit first introduced a bug. You give it a start commit and an end commit. It will check out commits between them. For each commit it checks out, you manually test whether the bug is present in that commit and then mark it as present or not. Eventually you will find which commit was the first one to have the bug. It's called bisect because instead of searching the commits linearly one at a time, it uses a binary search to try to narrow the pool of suspect commits.
-
-  If you have a script or command you could run to test for the presence of the bug, you can configure the bisect tool to run that command on every bisection.
 
 
 
