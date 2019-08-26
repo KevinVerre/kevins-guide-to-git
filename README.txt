@@ -3,6 +3,9 @@
 
 Table of Contents:
 
+
+Topic A: Commands you should know.
+
 Topic 0. Introduction to Git and this Guide.
 Topic 1. What Git is.
 Topic 2. The difference between Git and Github
@@ -13,8 +16,6 @@ Topic 6. Resolving conflicts
 Topic 7. Rebase and amend
 Topic 8. Other software built on top of Git
 Topic 9. Aliases and Auto-Complete
-
-Topic A: Commands you should know.
 
 Topic B: Other resources
 
@@ -252,8 +253,25 @@ https://github.com/git/git/tree/master/contrib/completion
 ## Topic A. Commands you should know.
 
 
-git “command” --help
-    Git will show you the Help page for the command if you add --help
+git --help
+  Lists some common commands and what they do.
+
+git <command> --help
+    Git will show you the Help page for a command if you add --help
+
+git status
+  Shows the current status. Includes which branch you are on. What changes have been made to the files, and whether those unstaged changes or changes that have already been staged. Also shows if your current branch is behind its upstream branch.
+
+git clone <URL to a Git Repo>
+  This clones a git repo. It makes a new folder in your current Present Working Directory (pwd). And downloads (saves) all of the contents of that git repo into that folder. This command is what you'll use if you want to work with a git repo that has already been initialized. Here's an example URL of a git repo that is hosted on Github.com: git@github.com:KevinVerre/kevins-guide-to-git.git
+  
+The URL can be in one of several different formats, such as ssh, ftp, or http/https. Similar to requesting a webpage, the URL will contain the domain name of the host server and a path that tells it what you are requested to be served. If the repo is private, you may also need to type in a username and password. Or you can set up your computer to automatically authenticate you by sending a public ssh_key.
+
+git init ./
+  initialize a new git repo in the current directory
+  
+git init <foldername>
+  create a new directory with "foldername" as the name. Then create a new git repo in that directory.
 
 git diff
     Shows you the changes to files in the repository that haven't been added to the staging area.
@@ -263,15 +281,6 @@ git diff --staged, git diff --cached
 
 git checkout -
   The dash argument will checkout the previous branch you were on before your current branch. (Similar to how `cd -` changes your directory to the previous one you were in.)
-
-git init “foldername"
-  create a new directory with "foldername" as the name. Then create a new git repo in that directory.
-
-git init ./
-  initialize a new git repo in the current directory
-
-git status
-  Shows the current status. Includes which branch you are on. What changes have been made to the files, and whether those unstaged changes or changes that have already been staged. Also shows if your current branch is behind its upstream branch.
 
 git branch
   Shows your local branches
