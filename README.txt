@@ -285,6 +285,15 @@ git branch -v
 git branch -vv
   Shows EVEN MORE verbose info about the branches, including the upstream branch for each branch that has one
 
+git checkout HEAD~2
+  Checkout the commit that is two commits prior to the commit that you are currently on. You will see a warning that you are in a "detached HEAD state" and that you may want to create a new branch. In other words, you have a commit checked out. But your state isn't set to be on any branch. Typically your state would be set to a branch that is pointing to a commit as its HEAD.
+
+git checkout -b <new_branch_name>
+  Creates a new branch with name <new_branch_name>. The new branch will be pointing to whatever commit is currently HEAD. If you're on a branch, this means you are creating a second branch that points to the same HEAD commit. But you can also call this from a "detached Head state".
+
+git checkout HEAD~2 -b <new_branch_name>
+  Checks out the commit that is two commits prior to your current HEAD commit. Then create a new branch that points to that commit as its HEAD and set your state to be that branch.
+
 git show “commit-hash"
   Given the hash (or even the first half of a hash), this shows the contents of a particular commit.
 
@@ -393,7 +402,9 @@ The company Atlassian, which makes tools for software developers, has some great
 
 GitHub.com also has some good, free resources and tutorials to help people learn Git.
 
-The official Git website has a free book that covers all the features of Git. It's called 'Pro Git': https://git-scm.com/book
+The official Git website links to a free book that covers all the features of Git. It's called 'Pro Git': https://git-scm.com/book . You can download it as PDF, download it in eBook format, or read it online in HTML format.
+
+
 
 
 
