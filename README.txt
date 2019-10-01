@@ -71,10 +71,13 @@ git branch -vv
 git checkout <branch_name>
   Checkout a local branch (or a remote branch). Set that branch to be the current branch. Set the last commit on that branch to be HEAD. Apply the changes necessary to the files and folders in your project folder to match the state they were in at the HEAD commit.
 
-git checkout -b <branch_name> origin/<branch_name>
+git checkout -b <local_branch_name> origin/<branch_name>
+git checkout -t origin/<branch_name>
   Check out a local copy of a remote branch. You don't have to make your local branch have the same name as the remote branch but typically they would be the same.
   
-  Behind the scenes, this it how it works: first it's creating a new local branch with name <branch_name>. It's setting the HEAD of that branch to point to the same commit that is the HEAD of the remote branch. Then it is setting the new branch's upstream value to point to the remote branch. You almost always want to call git fetch first in order to make sure that your local git repo's knowledge of the remote branch is up to date with what is actually on the remote server. "origin" is just a string name that points to a remote repo. 
+  Behind the scenes, this it how it works: first it's creating a new local branch with name <branch_name>. It's setting the HEAD of that branch to point to the same commit that is the HEAD of the remote branch. Then it is setting the new branch's upstream value to point to the remote branch. It is now tracking that upstream branch. You almost always want to call git fetch first in order to make sure that your local git repo's knowledge of the remote branch is up to date with what is actually on the remote server. "origin" is just a string name that points to a remote repo.
+  
+  The -t is a shorter way of doing the same thing. Checkout a new local branch with the same name as the remote branch and set it to track the that remote branch. You'll almost always want it to have the same name anyway.
 
 git checkout HEAD~2
   Checkout the commit that is two commits prior to the commit that you are currently on. You will see a warning that you are in a "detached HEAD state" and that you may want to create a new branch. In other words, you have a commit checked out. But your state isn't set to be on any branch. Typically your state would be set to a branch that is pointing to a commit as its HEAD.
