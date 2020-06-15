@@ -181,7 +181,8 @@
 
     - If you have a script or command you could run to test for the presence of the bug, you can configure the bisect tool to run that command on every bisection.
 
-
+`git branch --contains nameOfBranchToDelete`
+- Sometimes I'm not sure if an old branch has already been merged into Master and so is safe to delete the branch. This command prints out a list of all branches that contain every commit in particular branch. This list will always have at least one branch name because it includes itself in the list. Once I see that this list contains master, I know that the old branch has already been merged into master and I don't have to worry about deleting it.
 
 
 ## Topic 0. Introduction to Git and this Guide.
