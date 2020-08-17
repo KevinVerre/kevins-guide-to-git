@@ -3,23 +3,18 @@
 
 ## Table of Contents:
 
-- Topic A: Git Commands You Should Know.
-
-- Topic 0. Introduction to Git and this Guide.
-- Topic 1. What Git is.
-- Topic 2. The difference between Git and Github
-- Topic 3. Introduction to Branches and Commits
-- Topic 4. Crafting commits
-- Topic 5. A typical workflow example
-- Topic 6. Resolving conflicts
-- Topic 7. Rebase and amend
-- Topic 8. Other software built on top of Git
-- Topic 9. Aliases and Auto-Complete
-
-- Topic B: Other resources
-
-
-
+* [Topic A. Git Commands You Should Know.](#topic-agit-commands-you-should-know)
+* [Topic 0. Introduction to Git and this Guide.](#topic-0-introduction-to-git-and-this-guide)
+* [Topic 1. What Git is.](#topic1-what-git-is)
+* [Topic 2. The difference between Git and Github](#topic-2-the-difference-between-git-and-github)
+* [Topic 3. Introduction to Branches and Commits](#topic3-introduction-to-branches-and-commits)
+* [Topic 4. Crafting commits](#topic4-crafting-commits)
+* [Topic 5. A typical workflow example](#topic-5-a-typical-workflow-example)
+* [Topic 6. Resolving conflicts](#topic-6-resolving-conflicts)
+* [Topic 7. Rebase and amend](#topic-7-rebase-and-amend)
+* [Topic 8. Other software built on top of Git.](#topic-8-other-software-built-on-top-of-git)
+* [Topic 9. Aliases and tab-completion](#topic-9-aliases-and-tab-completion)
+* [Topic B. Other resources.](#topic-b-other-resources)
 
 
 ## Topic A. Git Commands You Should Know.
