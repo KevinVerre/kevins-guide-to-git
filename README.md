@@ -6,7 +6,7 @@
 * [Topic A. Git Commands You Should Know.](#topic-agit-commands-you-should-know)
 * [Topic 0. Introduction to Git and this Guide.](#topic-0-introduction-to-git-and-this-guide)
 * [Topic 1. What Git is.](#topic1-what-git-is)
-* [Topic 2. The difference between Git and Github](#topic-2-the-difference-between-git-and-github)
+* [Topic 2. The difference between Git and GitHub](#topic-2-the-difference-between-git-and-github)
 * [Topic 3. Introduction to Branches and Commits](#topic3-introduction-to-branches-and-commits)
 * [Topic 4. Crafting commits](#topic4-crafting-commits)
 * [Topic 5. A typical workflow example](#topic-5-a-typical-workflow-example)
@@ -25,13 +25,13 @@
 -  Lists some common commands and what they do.
 
 `git <command> --help`
-- Git will show you the Help page for a command if you add --help
+- Git will show you the Help page for a command if you add `--help`.
 
 `git status`
 - Shows the current status. Includes which branch you are on. What changes have been made to the files, and whether those unstaged changes or changes that have already been staged. Also shows if your current branch is behind its upstream branch.
 
 `git clone <URL to a Git Repo>`
-- This clones a Git repo. It makes a new folder in your current Present Working Directory (pwd). And downloads (saves) all of the contents of that Git repo into that folder. This command is what you'll use if you want to work with a Git repo that has already been initialized. Here's an example URL of a Git repo that is hosted on Github.com: git@github.com:KevinVerre/kevins-guide-to-git.git
+- This clones a Git repo. It makes a new folder in your current Present Working Directory (pwd). And downloads (saves) all of the contents of that Git repo into that folder. This command is what you'll use if you want to work with a Git repo that has already been initialized. Here's an example URL of a Git repo that is hosted on Github.com: `git@github.com:KevinVerre/kevins-guide-to-git.git`.
 
 - The URL can be in one of several different formats, such as `ssh`, `ftp`, or `http`/`https`. Similar to requesting a webpage, the URL will contain the domain name of the host server and a path that tells it what you are requested to be served. If the repo is private, you may also need to type in a username and password. Or you can set up your computer to automatically authenticate you by sending a public SSH key.
 
@@ -74,7 +74,7 @@
 - The `-t` flag is a shorter way of doing the same thing. Checkout a new local branch with the same name as the remote branch and set it to track the that remote branch. You'll almost always want it to have the same name anyway.
 
 `git checkout HEAD~2`
-- Checkout the commit that is two commits prior to the commit that you are currently on. You will see a warning that you are in a "detached HEAD state" and that you may want to create a new branch. In other words, you have a commit checked out. But your state isn't set to be on any branch. Typically your state would be set to a branch that is pointing to a commit as its HEAD.
+- Checkout the commit that is two commits prior to the commit that you are currently on. You will see a warning that you are in a "detached `HEAD` state" and that you may want to create a new branch. In other words, you have a commit checked out. But your state isn't set to be on any branch. Typically your state would be set to a branch that is pointing to a commit as its `HEAD`.
 
 `git checkout -b <new_branch_name>`
 - Creates a new branch with name `<new_branch_name>`. The new branch will be pointing to whatever commit is currently `HEAD`. If you're on a branch, this means you are creating a second branch that points to the same `HEAD` commit. But you can also call this from a "detached Head state".
@@ -82,7 +82,7 @@
 `git checkout HEAD~2 -b <new_branch_name>`
 - Checks out the commit that is two commits prior to your current HEAD commit. Then create a new branch that points to that commit as its HEAD and set your state to be that branch.
 
-`git show <commit_hash"`
+`git show <commit_hash>`
 - Given the hash (or even the first half of a hash), this shows the contents of a particular commit.
 
 `git show HEAD`
@@ -95,7 +95,7 @@
 - Shows a list of commits and their commit messages. By default this opens in Vim. Which means if you know some basic Vim commands you can use them to navigate the logs. The most useful Vim command is to search for text by typing forward slash and then the text you want to search for.
 
 `git log -n 3`
-- Use -n x to only show information about the X latest commits
+- Use `-n x` to only show information about the X latest commits.
 
 `git log --oneline`
 - Use the `--oneline` argument to only print out one line per git commit. So you can see the commit hash and the first line of the commit message.
@@ -104,19 +104,19 @@
 - This flag shows commits beginning from oldest to newest instead of newsest to older.
 
 `git log --graph`
-- Prints out a graph so you can see how branches were merged
+- Prints out a graph so you can see how branches were merged.
 
 `git fetch`
 - You local repository stores information about what it knows about the remote repository. Calling git fetch tells git to communicate with the remote repository and update what your local repository knows about it. When you do a `git pull` it starts by calling `git fetch`.
 
 `git fetch -p`
-- By default, git fetch will update what your local repository knows about the remote repository. It will download new commits and branches. But if a branch is deleted on the remote repository, your local storage will not delete the corresponding local-remote branch. However, if you use `-p` for prune it will delete any local-remote branches that no longer have a corresponding branch in the remote repository.
+- By default, `git fetch` will update what your local repository knows about the remote repository. It will download new commits and branches. But if a branch is deleted on the remote repository, your local storage will not delete the corresponding local-remote branch. However, if you use `-p` for prune it will delete any local-remote branches that no longer have a corresponding branch in the remote repository.
 
 `git merge <other_branch>`
 - This will merge the `other_branch` into your current branch. Unless the merge is a fast-forward merge, this will create a “merge commit”.
 
 `git pull`
-- This does two things. First, it does a git fetch. This means that your local repository will have all the updates from the remote repository stored in the form of remote branches. Also, if you are on a branch that has an upstream remote branch, it will merge that upstream remote branch (which is now a locally stored copy of the remote branch because of the Fetch) into your current branch
+- This does two things. First, it does a `git fetch`. This means that your local repository will have all the updates from the remote repository stored in the form of remote branches. Also, if you are on a branch that has an upstream remote branch, it will merge that upstream remote branch (which is now a locally stored copy of the remote branch because of the Fetch) into your current branch
 
 `git add -p FILENAME`
 - Have you ever wanted to stage some of the changes in a file but not all of the changes in that file? You can do this with the `--patch` argument, or `-p` for short. Git will go through all the changes in the file. To make this go quickly, it does it in "hunks" of lines instead of individual lines. A hunk is a group of lines that are next to each other. For each hunk, you can tell Git if you want to stage it, or move on to the next hunk. You can even tell it that you want to break down the hunk into individual lines if you want to get really specific about what you add to the staging area.
@@ -126,7 +126,7 @@
 `git commit --amend`
 - This makes changes to the latest commit on your current branch (`HEAD`). It allows you to do two things. One, it allows you to modify the commit message of your most recent commit (`HEAD`). It will also combines your staged changes with `HEAD`. I use this if I create a commit but then realize there is another change I want to make to the files and add to that commit. So this is a very convenient way to modify the contents of your most recent commit.
 
-    - Note that this actually deletes your HEAD commit and creates a new commit (with a new commit hash) to replace it. It's a type of "rebase".
+    - Note that this actually deletes your `HEAD` commit and creates a new commit (with a new commit hash) to replace it. It's a type of "rebase".
 
     - This is a very clean way of editing a commit you just made but haven't pushed or merged anywhere else. In this case, you're removing a commit from your current branch and replacing it with the new commit that contains the amendments.
 
@@ -148,7 +148,7 @@
 - For each line of a file, see which commit hash is responsible for the latest change to that line. It also shows the author of the commit, as well as the first part of the commit message. This is a great because it lets you see when a line of code was added to a file, and who it was that committed it.
 
 `git reset`
-- I use this to get rid of commits
+- I use this to get rid of commits.
 
 `git checkout <commit> <file>`
 - I use this to revert to a particular version of a file. It will stage the differences for that file from `HEAD` to `commit`. So that if you committed, you would have the old version of the file.
@@ -163,7 +163,7 @@
 - If you're some commits from a branch on top of another branch, there may be conflicts that Git cannot merge automatically. In that case you have to manually fix the conflicts. After you've saved your changes, stage the files that you changed, and use `--continue` to continue. As you are rebasing, Git tries to apply each commit on top of the other one at a time. So if you have several commits that cause conflicts you may have to stop, manually fix the conflicts, and continue several times.
 
 `git remote`
-- This shows you a list of remote repositiories that you are that you are currently tracking. But most people only connect to a single remote repo. By default, the first remote repo you connect to is given the label "origin"
+- This shows you a list of remote repositiories that you are that you are currently tracking. But most people only connect to a single remote repo. By default, the first remote repo you connect to is given the label `origin`.
 
 `git remote -v`
 - This is useful because it shows you the URL of your remote repo(s). Also, you could have two different URLs for a single remote repo. One would be used for fetching and one would be used for pushing. But in most cases.
@@ -177,7 +177,7 @@
     - If you have a script or command you could run to test for the presence of the bug, you can configure the bisect tool to run that command on every bisection.
 
 `git branch --contains nameOfBranchToDelete`
-- Sometimes I'm not sure if an old branch has already been merged into Master and so is safe to delete the branch. This command prints out a list of all branches that contain every commit in particular branch. This list will always have at least one branch name because it includes itself in the list. Once I see that this list contains master, I know that the old branch has already been merged into master and I don't have to worry about deleting it.
+- Sometimes I'm not sure if an old branch has already been merged into `master` and so is safe to delete the branch. This command prints out a list of all branches that contain every commit in particular branch. This list will always have at least one branch name because it includes itself in the list. Once I see that this list contains master, I know that the old branch has already been merged into master and I don't have to worry about deleting it.
 
 
 ## Topic 0. Introduction to Git and this Guide.
@@ -191,7 +191,7 @@ There are lots of resources online that can help you learn about how to use git.
 
 But once you've read my guide and understand the core concepts of Git, you'll be ready to start mastering it. At that point, you will get much more out of the tutorials and references that others have created.
 
-This guide is stored in a public Github repository. You can read this guide online there. You can also see how it changed over time using the history of committed changes. https://github.com/KevinVerre/kevins-guide-to-git
+This guide is stored in a public GitHub repository. You can read this guide online there. You can also see how it changed over time using the history of committed changes. https://github.com/KevinVerre/kevins-guide-to-git
 
 Towards the end of this guide is section of Commands You Should Know. Feel free to skip to that section if you already know a lot about git and just want to learn some new tricks.
 
@@ -238,18 +238,18 @@ In practice, you typically have a central git server running all of the time tha
 
 
 
-## Topic 2. The difference between Git and Github
+## Topic 2. The difference between Git and GitHub
 
 
-It's common for beginners to mix up Git and Github. Git is a program that you can install on your computer. By default, it is a command line program without a user interface. Git allows you to share code files that are on your computer with other computers, such as your teammates or your company's server.
+It's common for beginners to mix up Git and GitHub. Git is a program that you can install on your computer. By default, it is a command line program without a user interface. Git allows you to share code files that are on your computer with other computers, such as your teammates or your company's server.
 
-Github is a website (and the company behind the website). You can almost think of Github as a program running on top of Git that adds additional features. Because Github has Git running on their servers, you can share your code back and forth between your computer and the Github servers. There are a few reasons why you might want to do so. For one, storing your code on their servers is convenient. Their servers are always running and are safe because your stuff is protected by your usernames and passwords. That way, anyone on your team can always access the repository stored on Github through the Internet. While Git does not require a "central" repository, teams use Github as a central repository for convenience. When they want to share new code they've written, they push to Github. And when you want to see new code that someone else has written, you pull it from Github rather than pulling it directly from your teammate's computer.
+GitHub is a website (and the company behind the website). You can almost think of GitHub as a program running on top of Git that adds additional features. Because GitHub has Git running on their servers, you can share your code back and forth between your computer and the GitHub servers. There are a few reasons why you might want to do so. For one, storing your code on their servers is convenient. Their servers are always running and are safe because your stuff is protected by your usernames and passwords. That way, anyone on your team can always access the repository stored on GitHub through the Internet. While Git does not require a "central" repository, teams use GitHub as a central repository for convenience. When they want to share new code they've written, they push to GitHub. And when you want to see new code that someone else has written, you pull it from GitHub rather than pulling it directly from your teammate's computer.
 
-Github offers a free version and a paid version. Your code can be publicly visible or made private. There are reasons why you might want other people to see your code. For example, to show it off or to allow other people to make suggestions for improvements.
+GitHub offers a free version and a paid version. Your code can be publicly visible or made private. There are reasons why you might want other people to see your code. For example, to show it off or to allow other people to make suggestions for improvements.
 
-In addition to the paid version of Github, there is also an Enterprise version of Github that allows you to run a Github server on your own servers.
+In addition to the paid version of GitHub, there is also an Enterprise version of GitHub that allows you to run a GitHub server on your own servers.
 
-Github's website comes with a lot of tools to make using Git easier. You get to use the UI in your browser rather than the command line.
+GitHub's website comes with a lot of tools to make using Git easier. You get to use the UI in your browser rather than the command line.
 
 
 
@@ -309,7 +309,7 @@ Now we'll run you through an example of how a team might typically use Git.
 
 You'll start by creating a folder that contains all of your code and files. When you're ready to start using Git with that project, you can initialize a Git repo in that folder. Immediately, you'll have a master branch with no commits and all of the existing files and folders will be unstaged changes. You can stage the entire directory. The change will be represented as adding all of your files and folders since you started out with nothing and adding everything will get you to where you are.
 
-Since you want to store your work in the cloud, you find an instance of a Git server running on the Internet. Most people use Github or Bitbucket or something like that, either the free version or a paid version. But you can also run your own Git server if you really want to. If you have your credentials set up, you can push a copy of your Git repo to the cloud. This will act as your origin repo. You can set your local master to point to the origin's master branch as its upstream branch. This lets you keep track of how many commits you are ahead or behind that branch.
+Since you want to store your work in the cloud, you find an instance of a Git server running on the Internet. Most people use GitHub or Bitbucket or something like that, either the free version or a paid version. But you can also run your own Git server if you really want to. If you have your credentials set up, you can push a copy of your Git repo to the cloud. This will act as your origin repo. You can set your local master to point to the origin's master branch as its upstream branch. This lets you keep track of how many commits you are ahead or behind that branch.
 
 Your co-worker, Betty, can clone the repo from the cloud to her local computer. If she wants, she can push new commits or new branches to origin. To prove she is who she says she is, she might have to create a ssh key from a password.
 
@@ -413,10 +413,10 @@ https://github.com/git/git/tree/master/contrib/completion
 ## Topic B. Other resources.
 
 
-You can find collections of Git tips and tricks online, such as [this list](https://github.com/git-tips/tips) that appears in a Github repo.
+You can find collections of Git tips and tricks online, such as [this list](https://github.com/git-tips/tips) that appears in a GitHub repo.
 
 The company Atlassian, which makes tools for software developers, has some great educational web pages about Git. You can read these web pages for free. Atlassian is now the parent company of BitBucket, a product that competes with GitHub.
 
 GitHub.com also has some good, free resources and tutorials to help people learn Git.
 
-The official Git website links to a free book that covers all the features of Git. It's called [Pro Git](https://git-scm.com/book) . You can download it as PDF, download it in eBook format, or read it online in HTML format.
+The official Git website links to a free book that covers all the features of Git. It's called [Pro Git](https://git-scm.com/book). You can download it as PDF, download it in eBook format, or read it online in HTML format.
