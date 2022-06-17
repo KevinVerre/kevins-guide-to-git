@@ -65,7 +65,7 @@
 `git checkout <branch_name>`
 - Checkout a local branch (or a remote branch). Set that branch to be the current branch. Set the last commit on that branch to be `HEAD`. Apply the changes necessary to the files and folders in your project folder to match the state they were in at the `HEAD` commit.
 
-`git checkout -b <local_branch_name> origin/<branch_name>`
+`git checkout -b <local_branch_name> origin/<branch_name>` or 
 `git checkout -t origin/<branch_name>`
 - Check out a local copy of a remote branch. You don't have to make your local branch have the same name as the remote branch but typically they would be the same.
 
