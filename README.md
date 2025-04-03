@@ -73,6 +73,10 @@
 
 - The `-t` flag is a shorter way of doing the same thing. Checkout a new local branch with the same name as the remote branch and set it to track the that remote branch. You'll almost always want it to have the same name anyway.
 
+`git switch <remote_branch_name>`
+- I use this to checkout a local copy of remote_branch_name and set it to track the remote version
+- For example, let's say I know that a teammate pushed a branch to the origin server named 'their-feature-branch'. If I run `git switch their-feature-branch` it will create a new local branch named 'their-feature-branch and have it set to track origin/their-feature-branch
+
 `git checkout HEAD~2`
 - Checkout the commit that is two commits prior to the commit that you are currently on. You will see a warning that you are in a "detached `HEAD` state" and that you may want to create a new branch. In other words, you have a commit checked out. But your state isn't set to be on any branch. Typically your state would be set to a branch that is pointing to a commit as its `HEAD`.
 
