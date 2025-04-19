@@ -183,6 +183,12 @@
 `git branch --contains nameOfBranchToDelete`
 - Sometimes I'm not sure if an old branch has already been merged into `master` and so is safe to delete the branch. This command prints out a list of all branches that contain every commit in particular branch. This list will always have at least one branch name because it includes itself in the list. Once I see that this list contains master, I know that the old branch has already been merged into master and I don't have to worry about deleting it.
 
+`git stash`
+- This command will stash any modifications and staged changes. It's useful when you need to quickly switch contexts without committing a work-in-progress to your repository.
+
+`git stash list`
+- This command shows all stashes that you have in your repository.
+  
 
 ## Topic 0. Introduction to Git and this Guide.
 
